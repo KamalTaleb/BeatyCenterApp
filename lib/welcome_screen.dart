@@ -1,3 +1,4 @@
+import 'package:beauty_center/get_start.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -116,7 +117,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OnboardingPage(),
+                            ),
+                          );
+                        },
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 15, horizontal: 80),
