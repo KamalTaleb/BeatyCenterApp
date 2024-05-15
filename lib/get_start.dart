@@ -24,7 +24,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(bottom: 80),
+        padding: const EdgeInsets.all(30),
         child: PageView(
           controller: controller,
           onPageChanged: (index) {
@@ -32,18 +32,106 @@ class _OnboardingPageState extends State<OnboardingPage> {
           },
           children: [
             Container(
-              child: const Center(
-                child: Text("Page 1"),
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image.asset(
+                      'images/onboarding1.PNG',
+                      width: 200,
+                      height: 200,
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Exclusive Rewards Program",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "Join our loyalty program for luxurious rewards. Earn points for purchases and unlock discounts, complimentary treatments, and VIP access to exclusive events.",
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
+
             Container(
-              child: const Center(
-                child: Text("Page 2"),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Image.asset(
+                      'images/onboarding2.PNG',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Seamless Booking Experience",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "Say goodbye to waiting lines. Easily schedule appointments, browse available slots, and receive instant confirmations—all from your fingertips",
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
+
             Container(
-              child: const Center(
-                child: Text("Page 3"),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 6,
+                    child: Image.asset(
+                      'images/onboarding3.PNG',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Personalized Beauty Recommendations",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "Discover your perfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
