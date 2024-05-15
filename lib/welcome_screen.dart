@@ -1,17 +1,9 @@
 import 'package:beauty_center/get_start.dart';
+import 'package:beauty_center/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -20,19 +12,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     // This call to setState tells the Flutter framework that something has
-  //     // changed in this State, which causes it to rerun the build method below
-  //     // so that the display can reflect the updated values. If we changed
-  //     // _counter without calling setState(), then the build method would not be
-  //     // called again, and so nothing would appear to happen.
-  //     _counter++;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -45,12 +24,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.6,
+                  height: MediaQuery.of(context).size.height / 2,
                   decoration: BoxDecoration(color: Colors.white),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.6,
+                  height: MediaQuery.of(context).size.height / 1.99,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius:
@@ -69,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.666,
+                height: MediaQuery.of(context).size.height / 1.99,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                 ),
@@ -79,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.666,
+                height: MediaQuery.of(context).size.height / 1.99,
                 padding: EdgeInsets.only(top: 40, bottom: 30),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -89,6 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 15,
+                    ),
                     Text(
                       "Beauty center's name",
                       style: TextStyle(
@@ -99,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 30,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -112,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 19),
+                    SizedBox(height: 40),
                     Material(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
@@ -139,6 +121,29 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Already have an account?"),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => SignInPage(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            " Login",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 18),
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),

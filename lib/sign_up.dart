@@ -1,30 +1,23 @@
+import 'package:beauty_center/complete_profile.dart';
+import 'package:beauty_center/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// class SignUpPage extends StatefulWidget {
-//   const SignUpPage({super.key});
-//
-//   @override
-//   State<SignUpPage> createState() => _SignUpState();
-// }
-//
-// class _SignUpState extends State<SignUpPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.grey[300],
-//       body: Center(
-//         child: Container(
-//           child: Image(
-//             image: AssetImage('images/logo.png'),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool _isHidden = true;
+
+  void _toggleVisibility() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +67,61 @@ class SignUpPage extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
-                  inputFile(label: "Name"),
-                  inputFile(label: "Email"),
-                  inputFile(label: "Password", obscureText: true),
+                  // inputFile(label: "Name"),
+                  // inputFile(label: "Email"),
+                  // inputFile(label: "Password", obscureText: true,),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Name",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    obscureText: _isHidden,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isHidden ? Icons.visibility_off : Icons.visibility,
+                        ),
+                        onPressed: _toggleVisibility,
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
               Container(
@@ -93,7 +138,13 @@ class SignUpPage extends StatelessWidget {
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () {},
+                  onPressed: () async {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => completePage(),
+                      ),
+                    );
+                  },
                   color: Colors.blue,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -113,12 +164,54 @@ class SignUpPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text("Already have an account?"),
-                  Text(
-                    " Login",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => SignInPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      " Login",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    ),
                   ),
                 ],
               ),
+              // Row(
+              //   children: <Widget>[
+              //     Checkbox(
+              //       value: _agreedToTOS,
+              //       onChanged: (bool? newValue) {
+              //         _setAgreedToTOS(newValue ?? false);
+              //       },
+              //     ),
+              //     Expanded(
+              //       child: GestureDetector(
+              //         onTap: () => _setAgreedToTOS(!_agreedToTOS),
+              //         child: const Text("Agree with"),
+              //       ),
+              //     ),
+              //     TextButton(
+              //       onPressed: () async {
+              //         Navigator.of(context).pushReplacement(
+              //           MaterialPageRoute(
+              //             builder: (context) => SignInPage(),
+              //           ),
+              //         );
+              //       },
+              //       child: Text(
+              //         "Terms and Conditions",
+              //         style: TextStyle(
+              //             fontWeight: FontWeight.w600,
+              //             color: Colors.blue,
+              //             decoration: TextDecoration.underline),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -127,37 +220,37 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-Widget inputFile({label, obscureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          color: Colors.black87,
-        ),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
-          ),
-          border:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        ),
-      ),
-      SizedBox(
-        height: 10,
-      )
-    ],
-  );
-}
+// Widget inputFile({label, obscureText = false}) {
+//   return Column(
+//     crossAxisAlignment: CrossAxisAlignment.start,
+//     children: <Widget>[
+//       Text(
+//         label,
+//         style: TextStyle(
+//           fontSize: 15,
+//           fontWeight: FontWeight.w400,
+//           color: Colors.black87,
+//         ),
+//       ),
+//       SizedBox(
+//         height: 5,
+//       ),
+//       TextField(
+//         obscureText: obscureText,
+//         decoration: InputDecoration(
+//           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+//           enabledBorder: OutlineInputBorder(
+//             borderSide: BorderSide(
+//               color: Colors.grey,
+//             ),
+//           ),
+//           border:
+//               OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+//         ),
+//       ),
+//       SizedBox(
+//         height: 10,
+//       ),
+//     ],
+//   );
+// }
