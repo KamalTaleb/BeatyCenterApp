@@ -1,4 +1,5 @@
 import 'package:beauty_center/sign_up.dart';
+import 'package:beauty_center/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,7 +29,9 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => MyHomePage(),
+            ),);
           },
           icon: Icon(
             Icons.arrow_back,

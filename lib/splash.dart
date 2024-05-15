@@ -20,9 +20,7 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => MyHomePage(
-                  title: 'Welcome Screen',
-                )));
+            builder: (context) => MyHomePage()));
   }
 
   @override
