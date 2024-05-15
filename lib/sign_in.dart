@@ -28,7 +28,7 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back,
