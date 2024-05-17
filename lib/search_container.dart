@@ -4,7 +4,14 @@ import 'package:iconsax/iconsax.dart';
 class SSearchContainer extends StatelessWidget {
   const SSearchContainer({
     super.key,
+    required this.text,
+    this.icon,
   });
+
+  final String text;
+  final IconData? icon;
+
+  // final bool showbackground, showBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,7 @@ class SSearchContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const Icon(
+            Icon(
               Iconsax.search_normal,
               color: Colors.grey,
             ),
