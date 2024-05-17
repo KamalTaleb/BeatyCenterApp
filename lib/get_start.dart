@@ -38,8 +38,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
                       'images/onboarding1.PNG',
-                      width: 200,
-                      height: 200,
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      fit: BoxFit.cover,
+                      height:MediaQuery.of(context).size.height /2,
                     ),
                   ),
                   Expanded(
@@ -68,12 +69,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Container(
               child: Column(
                 children: [
-                  Expanded(
-                    flex: 2,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
                       'images/onboarding2.PNG',
+                      width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
-                      width: double.infinity,
+                      height:MediaQuery.of(context).size.height /2,
                     ),
                   ),
                   Expanded(
@@ -103,12 +105,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Container(
               child: Column(
                 children: [
-                  Expanded(
-                    flex: 6,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
                       'images/onboarding3.PNG',
+                      width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
-                      width: double.infinity,
+                      height:MediaQuery.of(context).size.height /2,
                     ),
                   ),
                   Expanded(

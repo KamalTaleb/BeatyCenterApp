@@ -30,13 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 1.99,
                   decoration: BoxDecoration(
-                    color: Colors.grey[300],
+                    color: Color(0xFF4d6972),
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(70)),
                   ),
                   child: Center(
                     child: Image.asset(
-                      'images/logo.png',
+                      'images/logo1.PNG',
                       scale: 0.8,
                     ),
                   ),
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 1.99,
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: Color(0xFF4d6972),
                 ),
               ),
             ),
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 20),
                     Material(
-                      color: Colors.teal.shade700,
+                      color: Color(0xFF4d6972),
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
@@ -139,9 +139,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(
                             " Login",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
+                                fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF4d6972),),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     SizedBox(height:5),
@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(
                             "Guest Mode",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
+                                fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF4d6972),),
                           ),
                         )
                       ],
