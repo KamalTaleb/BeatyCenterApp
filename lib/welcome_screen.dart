@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -94,11 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 20),
                     Material(
-<<<<<<< HEAD
-                      color: Colors.teal.shade700,
-=======
                       color: Color(0xFF4d6972),
->>>>>>> 06e82f64041ae2dbfd91fea1c2aa20724d828ac0
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
@@ -142,15 +139,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(
                             " Login",
                             style: TextStyle(
-<<<<<<< HEAD
-                                fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
-                          ),
-                        )
-=======
                                 fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF4d6972),),
                           ),
                         ),
->>>>>>> 06e82f64041ae2dbfd91fea1c2aa20724d828ac0
                       ],
                     ),
                     SizedBox(height:5),
@@ -169,11 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(
                             "Guest Mode",
                             style: TextStyle(
-<<<<<<< HEAD
-                                fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
-=======
                                 fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF4d6972),),
->>>>>>> 06e82f64041ae2dbfd91fea1c2aa20724d828ac0
                           ),
                         )
                       ],

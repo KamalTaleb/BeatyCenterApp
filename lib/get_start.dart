@@ -38,14 +38,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
                       'images/onboarding1.PNG',
-<<<<<<< HEAD
-                      width: 200,
-                      height: 200,
-=======
                       width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
                       height:MediaQuery.of(context).size.height /2,
->>>>>>> 06e82f64041ae2dbfd91fea1c2aa20724d828ac0
                     ),
                   ),
                   Expanded(
@@ -74,14 +69,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Container(
               child: Column(
                 children: [
-<<<<<<< HEAD
-                  Expanded(
-                    flex: 2,
-                    child: Image.asset(
-                      'images/onboarding2.PNG',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-=======
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
@@ -89,7 +76,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
                       height:MediaQuery.of(context).size.height /2,
->>>>>>> 06e82f64041ae2dbfd91fea1c2aa20724d828ac0
                     ),
                   ),
                   Expanded(
@@ -119,14 +105,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Container(
               child: Column(
                 children: [
-<<<<<<< HEAD
-                  Expanded(
-                    flex: 6,
-                    child: Image.asset(
-                      'images/onboarding3.PNG',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-=======
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
@@ -134,7 +112,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
                       height:MediaQuery.of(context).size.height /2,
->>>>>>> 06e82f64041ae2dbfd91fea1c2aa20724d828ac0
                     ),
                   ),
                   Expanded(
@@ -151,7 +128,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "Discover your perfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
+                          "Discover your pperfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
                           textAlign: TextAlign.center,
                         ),
                       ],
