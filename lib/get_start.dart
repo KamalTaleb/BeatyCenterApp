@@ -128,7 +128,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "Discover your perfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
+                          "Discover your pperfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
                           textAlign: TextAlign.center,
                         ),
                       ],
