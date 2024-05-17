@@ -1,3 +1,5 @@
+import 'package:beauty_center/home.dart';
+import 'package:beauty_center/navigation_menu.dart';
 import 'package:beauty_center/splash.dart';
 import 'package:flutter/material.dart';
 

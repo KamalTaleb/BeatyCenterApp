@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -9,7 +9,7 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    final darkMode = SHelperFunction.isDarkMode(context);
+    // final darkMode = SHelperFunction.isDarkMode(context);
 
     return Scaffold(
       bottomNavigationBar: Obx(
@@ -19,14 +19,16 @@ class NavigationMenu extends StatelessWidget {
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
-          backgroundColor: darkMode ? Colors.black : Colors.white,
-          indicatorColor: darkMode
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.1),
+          // backgroundColor: darkMode ? Colors.black : Colors.white,
+          // indicatorColor: darkMode
+          //     ? Colors.white.withOpacity(0.1)
+          //     : Colors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.reserve) , label: 'Booking'),
-            NavigationDestination(icon: Icon(Iconsax.profile), label: 'Profile'),
+            NavigationDestination(
+                icon: Icon(Iconsax.reserve), label: 'Booking'),
+            NavigationDestination(
+                icon: Icon(Iconsax.profile), label: 'Profile'),
           ],
         ),
       ),
@@ -37,5 +39,10 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
-  final screens = [Container(color: Colors.green), Container(color: Colors.purple), Container(color:Colors.orange), Container(color: Colors.blue)]
+  final screens = [
+    Container(color: Colors.green),
+    Container(color: Colors.purple),
+    Container(color: Colors.orange),
+    Container(color: Colors.blue)
+  ];
 }

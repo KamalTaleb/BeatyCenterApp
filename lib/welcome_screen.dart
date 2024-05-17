@@ -67,10 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     Text(
-                      "Beauty center's name",
+                      "BySabeen",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -92,9 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 20),
                     Material(
-                      color: Colors.grey[300],
+                      color: Colors.teal.shade700,
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(
                             "Let's get started",
                             style: TextStyle(
-                              color: Colors.black45,
+                              color: Colors.white,
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1,
@@ -138,7 +138,28 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(
                             " Login",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18),
+                                fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height:5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Only here for the services?"),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => SignInPage(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Guest Mode",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
                           ),
                         )
                       ],
