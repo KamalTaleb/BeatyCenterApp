@@ -129,7 +129,7 @@ class _SignInPageState extends State<SignInPage> {
                         minWidth: double.infinity,
                         height: 60,
                         onPressed: () {},
-                        color: Colors.blue,
+                        color: Colors.teal.shade700,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -160,7 +160,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: Text(
                           " Sign Up",
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
+                              fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal[700]),
                         ),
                       )
                     ],

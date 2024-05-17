@@ -145,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     );
                   },
-                  color: Colors.blue,
+                  color: Colors.teal.shade700,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
@@ -175,7 +175,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Text(
                       " Login",
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
                     ),
                   ),
                 ],
