@@ -3,6 +3,7 @@ import 'package:beauty_center/cart_menu_icon.dart';
 import 'package:beauty_center/curved_edge.dart';
 import 'package:beauty_center/curved_edge_widget.dart';
 import 'package:beauty_center/home_appbar.dart';
+import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,13 @@ class homePage extends StatelessWidget {
           children: [
             SPrimaryHeaderContainer(
               child: Column(
-                children: [SHomeAppBar()],
+                children: [
+                  // const SHomeAppBar(),
+                  const SizedBox(
+                    height: 32.0,
+                  ),
+                  SSearchContainer(),
+                ],
               ),
             ),
           ],
