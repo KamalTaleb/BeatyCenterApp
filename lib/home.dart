@@ -3,6 +3,7 @@ import 'package:beauty_center/cart_menu_icon.dart';
 import 'package:beauty_center/curved_edge.dart';
 import 'package:beauty_center/curved_edge_widget.dart';
 import 'package:beauty_center/home_appbar.dart';
+import 'package:beauty_center/home_services.dart';
 import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:beauty_center/section_heading.dart';
@@ -48,20 +49,7 @@ class homePage extends StatelessWidget {
                         const SizedBox(
                           height: 16.0,
                         ),
-                        SizedBox(
-                          height: 80,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 6,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (_, index) {
-                              return SVerticalImageText(
-                                image: "images/onboarding1.PNG",
-                                title: 'test',
-                              );
-                            },
-                          ),
-                        ),
+                        SHomeServices(),
                       ],
                     ),
                   ),
