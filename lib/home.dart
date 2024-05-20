@@ -2,14 +2,20 @@ import 'package:beauty_center/appbar.dart';
 import 'package:beauty_center/cart_menu_icon.dart';
 import 'package:beauty_center/curved_edge.dart';
 import 'package:beauty_center/curved_edge_widget.dart';
+import 'package:beauty_center/home.dart';
 import 'package:beauty_center/home_appbar.dart';
+import 'package:beauty_center/home_services.dart';
+import 'package:beauty_center/promo_slider.dart';
+import 'package:beauty_center/rounded_image.dart';
 import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:beauty_center/section_heading.dart';
 import 'package:beauty_center/vertical_image_text.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -25,7 +31,7 @@ class homePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SPrimaryHeaderContainer(
+            const SPrimaryHeaderContainer(
               child: Column(
                 children: [
                   const SizedBox(
@@ -47,24 +53,17 @@ class homePage extends StatelessWidget {
                         const SizedBox(
                           height: 16.0,
                         ),
-                        SizedBox(
-                          height: 80,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 6,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (_, index) {
-                              return SVerticalImageText(
-                                image: "images/onboarding1.PNG",
-                                title: 'test',
-                              );
-                            },
-                          ),
-                        ),
+                        SHomeServices(),
                       ],
                     ),
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SPromoSlider(
+                banners: [],
               ),
             ),
           ],
