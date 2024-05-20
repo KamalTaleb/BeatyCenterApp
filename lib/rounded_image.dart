@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class SRoundedImage extends StatelessWidget {
   const SRoundedImage({
     super.key,
-    this.width = 150,
-    this.height = 158,
+    this.width = 300,
+    this.height = 5,
     required this.imageUrl,
     this.applyImageRadius = true,
     this.border,
-    this.backgroundColor = Colors.lightBlueAccent,
+    this.backgroundColor = Colors.transparent,
     this.fit = BoxFit.contain,
     this.padding,
     this.isNetworkImage = false,
     this.onPressed,
-    this.borderRadius = 12.0,
+    this.borderRadius = 16.0,
   });
 
   final double? width, height;
@@ -38,11 +38,11 @@ class SRoundedImage extends StatelessWidget {
         decoration: BoxDecoration(
             border: border,
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(12.0)),
+            borderRadius: BorderRadius.circular(16.0)),
         child: ClipRRect(
           borderRadius: applyImageRadius
               ? BorderRadius.circular(borderRadius)
-              : BorderRadius.zero,
+              : BorderRadius.circular(16.0),
           child: Image(
             fit: fit,
             image: isNetworkImage

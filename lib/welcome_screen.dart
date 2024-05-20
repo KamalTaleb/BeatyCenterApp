@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.99,
+                  height: MediaQuery.of(context).size.height / 2,
                   decoration: const BoxDecoration(
                     color: Color(0xFF4d6972),
                     borderRadius:
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.99,
+                height: MediaQuery.of(context).size.height / 1.9,
                 decoration: const BoxDecoration(
                   color: Color(0xFF4d6972),
                 ),
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.99,
+                height: MediaQuery.of(context).size.height / 1.9,
                 padding: const EdgeInsets.only(top: 40, bottom: 30),
                 decoration: const BoxDecoration(
                   color: Colors.white,

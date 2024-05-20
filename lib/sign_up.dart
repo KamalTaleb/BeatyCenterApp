@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'package:beauty_center/verification_screen.dart';
-import 'package:email_otp/email_otp.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:beauty_center/complete_profile.dart';
 import 'package:beauty_center/sign_in.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -32,7 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       backgroundColor: Colors.teal[700],
     ));
   }
@@ -107,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: 20,
             color: Colors.black,
@@ -117,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
           width: double.infinity,
           child: Column(
@@ -125,14 +122,14 @@ class _SignUpPageState extends State<SignUpPage> {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Create Account",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -145,7 +142,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: <Widget>[
                   TextField(
                     controller: name,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Name",
                       contentPadding:
                       EdgeInsets.symmetric(vertical: 0, horizontal: 10),
@@ -156,12 +153,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextField(
                     controller: email,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Email",
                       contentPadding:
                       EdgeInsets.symmetric(vertical: 0, horizontal: 10),
@@ -172,7 +169,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextField(
@@ -187,24 +184,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         onPressed: _toggleVisibility,
                       ),
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
+                padding: const EdgeInsets.only(top: 3, left: 3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: Border(
+                  border: const Border(
                     bottom: BorderSide(color: Colors.black),
                     top: BorderSide(color: Colors.black),
                     left: BorderSide(color: Colors.black),
@@ -220,7 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -233,12 +230,12 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Already have an account?"),
+                  const Text("Already have an account?"),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => SignInPage(),
+                          builder: (context) => const SignInPage(),
                         ),
                       );
                     },

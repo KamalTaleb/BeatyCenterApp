@@ -8,10 +8,10 @@ import 'package:get/get.dart';
 class SPromoSlider extends StatelessWidget {
   const SPromoSlider({
     super.key,
-    required this.banners,
+    // required this.banners,
   });
 
-  final List<String> banners;
+  // final List<String> banners;
 
   @override
   Widget build(BuildContext context) {
@@ -25,37 +25,37 @@ class SPromoSlider extends StatelessWidget {
                   controller.updatePageIndicator(index)),
           items: const [
             SRoundedImage(
-              imageUrl: 'images/home1.jpg',
+              imageUrl: 'images/home1.JPG',
             ),
             SRoundedImage(
-              imageUrl: 'images/home2.jpg',
+              imageUrl: 'images/home2.JPG',
             ),
             SRoundedImage(
-              imageUrl: 'images/home3.jpg',
+              imageUrl: 'images/home3.JPG',
             ),
           ],
         ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        Center(
-          child: Obx(
-            () => Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (int i = 0; i < 3; i++)
-                  SCircularContainer(
-                      width: 20,
-                      height: 4,
-                      margin: const EdgeInsets.only(right: 10),
-                      backgroundColor:
-                          controller.carouselCurrentIndex.value == i
-                              ? Colors.blue
-                              : Colors.grey),
-              ],
-            ),
-          ),
-        ),
+        // const SizedBox(
+        //   height: 16.0,
+        // ),
+        // Center(
+        //   child: Obx(
+        //     () => Row(
+        //       mainAxisSize: MainAxisSize.min,
+        //       children: [
+        //         for (int i = 0; i < 3; i++)
+        //           SCircularContainer(
+        //               width: 20,
+        //               height: 4,
+        //               margin: const EdgeInsets.only(right: 10),
+        //               backgroundColor:
+        //                   controller.carouselCurrentIndex.value == i
+        //                       ? Colors.blue
+        //                       : Colors.grey),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

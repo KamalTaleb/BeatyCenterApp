@@ -43,6 +43,7 @@ dependencies:
   email_validator: ^2.0.1
   email_otp: ^1.0.4
 
+  http: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
