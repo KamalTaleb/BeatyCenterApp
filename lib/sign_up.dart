@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'package:beauty_center/verification_screen.dart';
+import 'package:email_otp/email_otp.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:beauty_center/complete_profile.dart';
 import 'package:beauty_center/sign_in.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -11,12 +17,82 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  // EmailOTP myauth = EmailOTP();
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool _isHidden = true;
 
   void _toggleVisibility() {
     setState(() {
       _isHidden = !_isHidden;
     });
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.teal[700],
+    ));
+  }
+
+  Future<void> signup() async {
+    if (email.text.isEmpty || password.text.isEmpty || name.text.isEmpty) {
+      _showSnackBar("Please fill in all fields.");
+      return;
+    }
+
+    if (!EmailValidator.validate(email.text)) {
+      _showSnackBar("Please enter a valid email address.");
+      return;
+    }
+
+    var url = Uri.parse("http://localhost/senior/register.php");
+    var response = await http.post(url, body: {
+      "name": name.text,
+      "email": email.text,
+      "password": password.text,
+    });
+
+    print(response.body);
+
+    var data = json.decode(response.body);
+    if (data.containsKey("error")) {
+      _showSnackBar(data["error"]);
+    } else if (data.containsKey("success")) {
+      if (data.containsKey('user_id') && data['user_id'] != null) {
+        int userId = data['user_id'];
+        // myauth.setConfig(
+        //   appEmail: "52210183@students.liu..edu.lb",
+        //   appName: "Email OTP",
+        //   userEmail: email.text,
+        //   otpLength: 4,
+        //   otpType: OTPType.digitsOnly,
+        // );
+        // if (await myauth.sendOTP()) {
+        //   _showSnackBar("OTP has been sent");
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => VerificationScreen(myauth: myauth, email: email.text),
+        //     ),
+        //   );
+        // } else {
+        //   _showSnackBar("Oops, OTP send failed");
+        // }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => completePage(userId: userId),
+          ),
+        );
+      } else {
+        _showSnackBar("User ID is missing from the response.");
+      }
+    } else {
+      _showSnackBar("Unexpected response format. Please try again.");
+    }
   }
 
   @override
@@ -31,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back,
             size: 20,
             color: Colors.black,
@@ -41,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
           width: double.infinity,
           child: Column(
@@ -49,14 +125,14 @@ class _SignUpPageState extends State<SignUpPage> {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  const Text(
+                  Text(
                     "Create Account",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -67,14 +143,12 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Column(
                 children: <Widget>[
-                  // inputFile(label: "Name"),
-                  // inputFile(label: "Email"),
-                  // inputFile(label: "Password", obscureText: true,),
-                  const TextField(
+                  TextField(
+                    controller: name,
                     decoration: InputDecoration(
                       labelText: "Name",
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
@@ -82,25 +156,27 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const TextField(
-                    decoration: InputDecoration(
-                      labelText: "Email",
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
+                  SizedBox(
                     height: 15,
                   ),
                   TextField(
+                    controller: email,
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      contentPadding:
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    controller: password,
                     obscureText: _isHidden,
                     decoration: InputDecoration(
                       labelText: "Password",
@@ -111,24 +187,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         onPressed: _toggleVisibility,
                       ),
                       contentPadding:
-                          const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: const OutlineInputBorder(
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
                 ],
               ),
               Container(
-                padding: const EdgeInsets.only(top: 3, left: 3),
+                padding: EdgeInsets.only(top: 3, left: 3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: const Border(
+                  border: Border(
                     bottom: BorderSide(color: Colors.black),
                     top: BorderSide(color: Colors.black),
                     left: BorderSide(color: Colors.black),
@@ -138,19 +214,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () async {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => const completePage(),
-                      ),
-                    );
-                  },
+                  onPressed: signup,
                   color: Colors.teal.shade700,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -163,55 +233,25 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text("Already have an account?"),
+                  Text("Already have an account?"),
                   TextButton(
-                    onPressed: () async {
+                    onPressed: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => const SignInPage(),
+                          builder: (context) => SignInPage(),
                         ),
                       );
                     },
                     child: Text(
                       " Login",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal.shade700),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: Colors.teal.shade700),
                     ),
                   ),
                 ],
               ),
-              // Row(
-              //   children: <Widget>[
-              //     Checkbox(
-              //       value: _agreedToTOS,
-              //       onChanged: (bool? newValue) {
-              //         _setAgreedToTOS(newValue ?? false);
-              //       },
-              //     ),
-              //     Expanded(
-              //       child: GestureDetector(
-              //         onTap: () => _setAgreedToTOS(!_agreedToTOS),
-              //         child: const Text("Agree with"),
-              //       ),
-              //     ),
-              //     TextButton(
-              //       onPressed: () async {
-              //         Navigator.of(context).pushReplacement(
-              //           MaterialPageRoute(
-              //             builder: (context) => SignInPage(),
-              //           ),
-              //         );
-              //       },
-              //       child: Text(
-              //         "Terms and Conditions",
-              //         style: TextStyle(
-              //             fontWeight: FontWeight.w600,
-              //             color: Colors.blue,
-              //             decoration: TextDecoration.underline),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
@@ -219,38 +259,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
-// Widget inputFile({label, obscureText = false}) {
-//   return Column(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: <Widget>[
-//       Text(
-//         label,
-//         style: TextStyle(
-//           fontSize: 15,
-//           fontWeight: FontWeight.w400,
-//           color: Colors.black87,
-//         ),
-//       ),
-//       SizedBox(
-//         height: 5,
-//       ),
-//       TextField(
-//         obscureText: obscureText,
-//         decoration: InputDecoration(
-//           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-//           enabledBorder: OutlineInputBorder(
-//             borderSide: BorderSide(
-//               color: Colors.grey,
-//             ),
-//           ),
-//           border:
-//               OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-//         ),
-//       ),
-//       SizedBox(
-//         height: 10,
-//       ),
-//     ],
-//   );
-// }
