@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:email_otp/email_otp.dart';
-import 'package:beauty_center/complete_profile.dart';
 
 class VerificationScreen extends StatefulWidget {
   final EmailOTP myauth;
   final String email;
 
-  VerificationScreen({required this.myauth, required this.email});
+  const VerificationScreen({super.key, required this.myauth, required this.email});
 
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  TextEditingController _controller1 = TextEditingController();
-  TextEditingController _controller2 = TextEditingController();
-  TextEditingController _controller3 = TextEditingController();
-  TextEditingController _controller4 = TextEditingController();
+  final TextEditingController _controller1 = TextEditingController();
+  final TextEditingController _controller2 = TextEditingController();
+  final TextEditingController _controller3 = TextEditingController();
+  final TextEditingController _controller4 = TextEditingController();
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       backgroundColor: Colors.teal[700],
     ));
   }
@@ -41,29 +40,29 @@ class _VerificationScreenState extends State<VerificationScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_circle_left_outlined),
+            icon: const Icon(Icons.arrow_circle_left_outlined),
             onPressed: () {
               Navigator.of(context).pop();
             }),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Verify Code',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
               'Please enter the code we sent to your email',
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -74,13 +73,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counter: Offstage(),
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 SizedBox(
                   width: 50.0,
                   child: TextField(
@@ -88,13 +87,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counter: Offstage(),
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 SizedBox(
                   width: 50.0,
                   child: TextField(
@@ -102,13 +101,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counter: Offstage(),
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 SizedBox(
                   width: 50.0,
                   child: TextField(
@@ -116,7 +115,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counter: Offstage(),
                       border: OutlineInputBorder(),
                     ),
@@ -124,7 +123,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 40.0),
+            const SizedBox(height: 40.0),
             TextButton(
               onPressed: () {
                 widget.myauth.sendOTP();
@@ -138,15 +137,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal[700],
                 foregroundColor: Colors.white,
-                minimumSize: Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity, 50),
               ),
               onPressed: verifyOTP,
-              child: Text('Verify'),
+              child: const Text('Verify'),
             ),
           ],
         ),

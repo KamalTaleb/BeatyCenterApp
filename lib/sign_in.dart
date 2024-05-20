@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:beauty_center/home.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/welcome_screen.dart';
 import 'package:beauty_center/profile.dart';
@@ -30,7 +29,7 @@ class _SignInPageState extends State<SignInPage> {
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       backgroundColor: Colors.teal[700],
     ));
   }
@@ -64,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
       _showSnackBar("Login successful as $role");
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
-        return Profile();
+        return const Profile();
       }));
     } else {
       _showSnackBar("Invalid email or password");
@@ -82,10 +81,10 @@ class _SignInPageState extends State<SignInPage> {
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => MyHomePage(),
+              builder: (context) => const MyHomePage(),
             ));
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: 20,
             color: Colors.black,
@@ -93,7 +92,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Column(
@@ -105,12 +104,12 @@ class _SignInPageState extends State<SignInPage> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Sign In",
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Text(
@@ -120,12 +119,12 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
                         TextField(
                           controller: email,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Email",
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
@@ -136,7 +135,7 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         TextField(
@@ -152,9 +151,9 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                               onPressed: _toggleVisibility,
                             ),
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.grey,
                               ),
@@ -165,12 +164,12 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
-                      padding: EdgeInsets.only(top: 3, left: 3),
+                      padding: const EdgeInsets.only(top: 3, left: 3),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        border: Border(
+                        border: const Border(
                           bottom: BorderSide(color: Colors.black),
                           top: BorderSide(color: Colors.black),
                           left: BorderSide(color: Colors.black),
@@ -186,7 +185,7 @@ class _SignInPageState extends State<SignInPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Sign In",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -200,12 +199,12 @@ class _SignInPageState extends State<SignInPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Don't have an account?"),
+                      const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () async {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) => SignUpPage(),
+                              builder: (context) => const SignUpPage(),
                             ),
                           );
                         },

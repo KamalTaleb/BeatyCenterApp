@@ -1,25 +1,20 @@
-import 'package:beauty_center/appbar.dart';
-import 'package:beauty_center/cart_menu_icon.dart';
-import 'package:beauty_center/curved_edge.dart';
-import 'package:beauty_center/curved_edge_widget.dart';
-import 'package:beauty_center/home.dart';
-import 'package:beauty_center/home_appbar.dart';
+import 'package:beauty_center/gallery_test.dart';
 import 'package:beauty_center/home_services.dart';
 import 'package:beauty_center/promo_slider.dart';
-import 'package:beauty_center/rounded_image.dart';
 import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:beauty_center/section_heading.dart';
-import 'package:beauty_center/vertical_image_text.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:iconsax/iconsax.dart';
-
-import 'circular_container.dart';
+//
+// List<SImageDetails> _images =[
+//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
+//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
+//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
+//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
+//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
+// ];
 
 class homePage extends StatelessWidget {
   const homePage({super.key});
@@ -31,18 +26,18 @@ class homePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SPrimaryHeaderContainer(
+            SPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 32.0,
                   ),
                   SSearchContainer(text: "search"),
-                  const SizedBox(
+                  SizedBox(
                     height: 32.0,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 18.0),
+                    padding: EdgeInsets.only(left: 18.0),
                     child: Column(
                       children: [
                         SSectionHeading(
@@ -50,7 +45,7 @@ class homePage extends StatelessWidget {
                           showActivityButton: false,
                           textColor: Colors.white,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 16.0,
                         ),
                         SHomeServices(),
@@ -61,14 +56,55 @@ class homePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SPromoSlider(
-                banners: [],
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SPromoSlider(),
+                  SizedBox(
+                    height: 32.0,
+                  ),
+                  // SGalleryTest(),
+                ],
+                // banners: [],
               ),
             ),
+            SizedBox(
+              height: 32.0,
+            ),
+            // SGalleryTest(),
+
+            // Expanded(
+            //     child: GridView.builder(
+            //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 3,crossAxisSpacing: 10, mainAxisSpacing: 10),
+            //       itemBuilder: (context, index){
+            //         return RawMaterialButton(
+            //             onPressed: (){},
+            //           child: Container(
+            //             decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(15.0),
+            //               image: DecorationImage(image: AssetImage(_images[index].imagePath),
+            //               fit: BoxFit.cover,
+            //               ),
+            //             ),
+            //           ),
+            //         );
+            //       },
+            //       itemCount: _images.length,
+            //     ),
+            // ),
           ],
         ),
       ),
     );
   }
 }
+//
+// class SImageDetails{
+//   final String imagePath, price, photographer, title, details;
+//   SImageDetails({required this.imagePath,
+//     required this.details,
+//     required this.photographer,
+//     required this.price,
+//     required this.title,});
+// }

@@ -38,7 +38,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
           phoneNumberController.text = data['data']['phone'];
           gender = data['data']['gender'];
           if (data['data']['profile_image'] != null) {
-            profileImage = Base64Decoder().convert(data['data']['profile_image']);
+            profileImage = const Base64Decoder().convert(data['data']['profile_image']);
           }
         });
       } else {
@@ -48,7 +48,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
         ));
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Failed to fetch user data"),
         backgroundColor: Colors.red,
       ));
@@ -60,7 +60,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_circle_left_outlined),
+          icon: const Icon(Icons.arrow_circle_left_outlined),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -71,41 +71,41 @@ class _CompleteProfileState extends State<CompleteProfile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Your profile',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CircleAvatar(
               radius: 60,
               backgroundImage: profileImage != null
                   ? MemoryImage(profileImage!)
-                  : AssetImage('assets/avatar.jpg') as ImageProvider,
+                  : const AssetImage('assets/avatar.jpg') as ImageProvider,
             ),
             TextField(
               controller: nameController,
               readOnly: true,
-              decoration: InputDecoration(labelText: "Name"),
+              decoration: const InputDecoration(labelText: "Name"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: phoneNumberController,
               readOnly: true,
-              decoration: InputDecoration(labelText: "Phone Number"),
+              decoration: const InputDecoration(labelText: "Phone Number"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             DropdownButtonFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Gender',
                 border: OutlineInputBorder(
                   borderSide: BorderSide(width: 2.0),
                 ),
               ),
               value: gender,
-              items: [
+              items: const [
                 DropdownMenuItem(
                   value: 'Male',
                   child: Text('Male'),

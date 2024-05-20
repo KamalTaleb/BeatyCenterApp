@@ -43,7 +43,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       height:MediaQuery.of(context).size.height /2,
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -78,7 +78,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       height:MediaQuery.of(context).size.height /2,
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     flex: 1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +114,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       height:MediaQuery.of(context).size.height /2,
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     flex: 3,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -159,7 +159,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 prefs.setBool('shoHome', true);
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => SignUpPage(),
+                    builder: (context) => const SignUpPage(),
                   ),
                 );
               },

@@ -16,20 +16,20 @@ class _SplashState extends State<Splash> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 2000), () {});
+    await Future.delayed(const Duration(milliseconds: 2000), () {});
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => MyHomePage()));
+            builder: (context) => const MyHomePage()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF4d6972),
+      backgroundColor: const Color(0xFF4d6972),
       body: Center(
         child: Container(
-          child: Image(
+          child: const Image(
             image: AssetImage('images/logo1.PNG'),
           ),
         ),
