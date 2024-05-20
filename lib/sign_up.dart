@@ -31,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: 20,
             color: Colors.black,
@@ -41,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
           width: double.infinity,
           child: Column(
@@ -49,14 +49,14 @@ class _SignUpPageState extends State<SignUpPage> {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Create Account",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   // inputFile(label: "Name"),
                   // inputFile(label: "Email"),
                   // inputFile(label: "Password", obscureText: true,),
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       labelText: "Name",
                       contentPadding:
@@ -82,10 +82,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       labelText: "Email",
                       contentPadding:
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextField(
@@ -111,24 +111,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         onPressed: _toggleVisibility,
                       ),
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
+                          const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
+                padding: const EdgeInsets.only(top: 3, left: 3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: Border(
+                  border: const Border(
                     bottom: BorderSide(color: Colors.black),
                     top: BorderSide(color: Colors.black),
                     left: BorderSide(color: Colors.black),
@@ -141,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: () async {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => completePage(),
+                        builder: (context) => const completePage(),
                       ),
                     );
                   },
@@ -150,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -163,12 +163,12 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Already have an account?"),
+                  const Text("Already have an account?"),
                   TextButton(
                     onPressed: () async {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => SignInPage(),
+                          builder: (context) => const SignInPage(),
                         ),
                       );
                     },

@@ -1,8 +1,6 @@
 import 'package:beauty_center/sign_up.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'dart:io';
@@ -33,11 +31,11 @@ class _completePageState extends State<completePage> {
           onPressed: () async {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => SignUpPage(),
+                builder: (context) => const SignUpPage(),
               ),
             );
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: 20,
             color: Colors.black,
@@ -47,13 +45,13 @@ class _completePageState extends State<completePage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Column(
+              const Column(
                 children: <Widget>[
                   Text(
                     "Complete Your Profile",
@@ -100,7 +98,7 @@ class _completePageState extends State<completePage> {
                       FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]+'))
                       // Allow only letters
                     ],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Name",
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 0, horizontal: 10),
@@ -111,7 +109,7 @@ class _completePageState extends State<completePage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextField(
@@ -119,7 +117,7 @@ class _completePageState extends State<completePage> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Phone number",
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 0, horizontal: 10),
@@ -130,7 +128,7 @@ class _completePageState extends State<completePage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextFormField(
@@ -138,18 +136,18 @@ class _completePageState extends State<completePage> {
                     decoration: InputDecoration(
                       labelText: 'Gender',
                       suffixIcon: PopupMenuButton<String>(
-                        icon: Icon(Icons.arrow_drop_down),
+                        icon: const Icon(Icons.arrow_drop_down),
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'Male',
                             child: Text('Male'),
                           ),
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'Female',
                             child: Text('Female'),
                           ),
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'Prefer not to answer',
                             child: Text('Prefer not to answer'),
                           ),
@@ -160,11 +158,11 @@ class _completePageState extends State<completePage> {
                           });
                         },
                       ),
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                     ),
                     controller: TextEditingController(text: _selectedItem),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],

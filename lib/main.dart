@@ -1,5 +1,4 @@
 import 'package:beauty_center/home.dart';
-import 'package:beauty_center/navigation_menu.dart';
 import 'package:beauty_center/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: homePage(),
+      home: const homePage(),
     );
   }
 }

@@ -30,10 +30,10 @@ class _SignInPageState extends State<SignInPage> {
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => MyHomePage(),
+              builder: (context) => const MyHomePage(),
             ),);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: 20,
             color: Colors.black,
@@ -41,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Column(
@@ -53,12 +53,12 @@ class _SignInPageState extends State<SignInPage> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Sign In",
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Text(
@@ -68,12 +68,12 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
                         // inputFile(label: "Email"),
                         // inputFile(label: "Passord", obscureText: true)
-                        TextField(
+                        const TextField(
                           decoration: InputDecoration(
                             labelText: "Email",
                             contentPadding: EdgeInsets.symmetric(
@@ -85,7 +85,7 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         TextField(
@@ -100,9 +100,9 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                               onPressed: _toggleVisibility,
                             ),
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.grey,
                               ),
@@ -113,12 +113,12 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
-                      padding: EdgeInsets.only(top: 3, left: 3),
+                      padding: const EdgeInsets.only(top: 3, left: 3),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        border: Border(
+                        border: const Border(
                           bottom: BorderSide(color: Colors.black),
                           top: BorderSide(color: Colors.black),
                           left: BorderSide(color: Colors.black),
@@ -134,7 +134,7 @@ class _SignInPageState extends State<SignInPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Sign In",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -148,12 +148,12 @@ class _SignInPageState extends State<SignInPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Don't have an account?"),
+                      const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () async {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) => SignUpPage(),
+                              builder: (context) => const SignUpPage(),
                             ),
                           );
                         },
@@ -181,18 +181,18 @@ Widget inputFile({label, obscureText = false}) {
     children: <Widget>[
       Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w400,
           color: Colors.black87,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 5,
       ),
       TextField(
         obscureText: obscureText,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -203,7 +203,7 @@ Widget inputFile({label, obscureText = false}) {
               OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 10,
       )
     ],

@@ -10,7 +10,7 @@ class SHomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SAppbar(
-      title: Column(
+      title: const Column(
         children: [
           Text(
             "hello",

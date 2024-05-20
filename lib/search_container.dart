@@ -30,7 +30,7 @@ class SSearchContainer extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(
+              const Icon(
                 Iconsax.search_normal,
                 color: Colors.grey,
               ),

@@ -14,7 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -24,12 +24,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 2,
-                  decoration: BoxDecoration(color: Colors.white),
+                  decoration: const BoxDecoration(color: Colors.white),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 1.99,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFF4d6972),
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(70)),
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 1.99,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFF4d6972),
                 ),
               ),
@@ -58,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 1.99,
-                padding: EdgeInsets.only(top: 40, bottom: 30),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.only(top: 40, bottom: 30),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(70),
@@ -67,10 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "BySabeen",
                       style: TextStyle(
                         fontSize: 25,
@@ -79,11 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         wordSpacing: 2,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
                         "TEXT",
                         textAlign: TextAlign.center,
@@ -93,23 +93,23 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Material(
-                      color: Color(0xFF4d6972),
+                      color: const Color(0xFF4d6972),
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => OnboardingPage(),
+                              builder: (context) => const OnboardingPage(),
                             ),
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 80),
-                          child: Text(
+                          child: const Text(
                             "Let's get started",
                             style: TextStyle(
                               color: Colors.white,
@@ -121,22 +121,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Already have an account?"),
+                        const Text("Already have an account?"),
                         TextButton(
                           onPressed: () async {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => SignInPage(),
+                                builder: (context) => const SignInPage(),
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             " Login",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF4d6972),),
@@ -144,20 +144,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(height:5),
+                    const SizedBox(height:5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Only here for the services?"),
+                        const Text("Only here for the services?"),
                         TextButton(
                           onPressed: () async {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => SignInPage(),
+                                builder: (context) => const SignInPage(),
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             "Guest Mode",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF4d6972),),
