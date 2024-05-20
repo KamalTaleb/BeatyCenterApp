@@ -2,6 +2,7 @@ import 'package:beauty_center/complete_profile.dart';
 import 'package:beauty_center/edit_profile.dart';
 import 'package:beauty_center/home.dart';
 import 'package:beauty_center/navigation_menu.dart';
+import 'package:beauty_center/privacy_policy.dart';
 import 'package:beauty_center/profile.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:beauty_center/sign_up.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SignInPage(),
+      home: PrivacyPolicyPage(),
     );
   }
 }
