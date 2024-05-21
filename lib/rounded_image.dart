@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class SRoundedImage extends StatelessWidget {
   const SRoundedImage({
     super.key,
-    this.width = 300,
-    this.height = 5,
+    this.width = 500,
+    this.height = 500,
     required this.imageUrl,
     this.applyImageRadius = true,
     this.border,

@@ -4,6 +4,7 @@ import 'package:beauty_center/promo_slider.dart';
 import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:beauty_center/section_heading.dart';
+import 'package:beauty_center/services_card_horizontal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -59,9 +60,22 @@ class homePage extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  SPromoSlider(),
-                  SizedBox(
+                  const SPromoSlider(),
+                  const SizedBox(
                     height: 32.0,
+                  ),
+                  GridView.builder(
+                    itemCount: 4,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16.0,
+                    crossAxisSpacing: 16.0,
+                    mainAxisExtent: 288,
+                  ),
+                    itemBuilder: (_, index)=> const SServicesCardHorizontal(),
                   ),
                   // SGalleryTest(),
                 ],
