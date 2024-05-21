@@ -1,15 +1,20 @@
-import 'package:beauty_center/gallery_details.dart';
+import 'package:beauty_center/details.dart';
 import 'package:flutter/material.dart';
 
 
 
 
 List<SImageDetails> _images =[
-  SImageDetails(imagePath: 'images/home6.jpg', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/logo.png', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/logo1.PNG', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/splash.png', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/onboarding1.PNG', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/nails1.jpg', details: 'Pose vernis', speciality: 'Hoda',title: 'Nails'),
+  SImageDetails(imagePath: 'images/makeup1.jpg', details: 'Full makeup', speciality: 'Maria',title: 'Makeup'),
+  SImageDetails(imagePath: 'images/nails2.jpg', details: 'Gelish', speciality: 'Siham',title: 'Nails'),
+  SImageDetails(imagePath: 'images/hair1.jpg', details: 'Highlights', speciality: 'Sahar',title: 'Hair'),
+  SImageDetails(imagePath: 'images/hair2.jpg', details: 'Half-do', speciality: 'Hadil',title: 'Hair'),
+  SImageDetails(imagePath: 'images/nails3.jpg', details: 'Extension Gelish', speciality: 'Hoda',title: 'Nails'),
+  SImageDetails(imagePath: 'images/makeup2.jpg', details: 'Birdal Glam', speciality: 'Lea',title: 'Makeup'),
+  SImageDetails(imagePath: 'images/hair3.jpg', details: 'Half-do', speciality: 'Sahar',title: 'Hair'),
+
+
 ];
 
 
@@ -94,8 +99,10 @@ class SGalleryTest extends StatelessWidget {
 
 class SImageDetails{
   final String imagePath, speciality, title, details;
-  SImageDetails({required this.imagePath,
+  SImageDetails({
+    required this.imagePath,
     required this.details,
     required this.speciality,
-    required this.title,});
+    required this.title,
+  });
 }

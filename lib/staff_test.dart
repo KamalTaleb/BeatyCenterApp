@@ -1,15 +1,22 @@
-import 'package:beauty_center/gallery_details.dart';
+import 'package:beauty_center/details.dart';
 import 'package:flutter/material.dart';
 
 
 
 
 List<SImageDetails> _images =[
-  SImageDetails(imagePath: 'images/home1.JPG', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/home2.JPG', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/home3.JPG', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/home4.JPG', details: 'details', speciality: 'photographer',title: 'title'),
-  SImageDetails(imagePath: 'images/home5.JPG', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/hairstylist1.jpg', details: 'details', speciality: 'Nails',title: 'Hoda'),
+  SImageDetails(imagePath: 'images/facial1.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/hairstylist2.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/lashtech1.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/nailtech1.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/mua1.jpg', details: 'details', speciality: 'Makeup Artist',title: 'Maria'),
+  SImageDetails(imagePath: 'images/lashtech2.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/facial2.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/mua2.jpg', details: 'details', speciality: 'photographer',title: 'title'),
+  SImageDetails(imagePath: 'images/nailtech2.jpg', details: 'details', speciality: 'photographer',title: 'Siham'),
+
+
 ];
 
 

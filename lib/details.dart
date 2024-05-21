@@ -43,21 +43,21 @@ class SGalleryDetails extends StatelessWidget {
                           title,
                           style: TextStyle(
                             color: Colors.teal[700],
-                            fontSize: 22,
+                            fontSize: 30,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
-                          'by $speciality',
+                          'By $speciality',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 15,
                           ),
                         ),
                         SizedBox(height: 10,),
                         Text(
                           details,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 20,
                           ),
                         ),
                       ],
