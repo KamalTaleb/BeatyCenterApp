@@ -43,7 +43,7 @@ class homePage extends StatelessWidget {
                       children: [
                         SSectionHeading(
                           title: "Popular Services",
-                          showActivityButton: false,
+                          showActivityButton: true,
                           textColor: Colors.white,
                         ),
                         SizedBox(
