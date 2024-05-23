@@ -28,10 +28,10 @@ class SGalleryTest extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Text(
+            const Text(
                 'Services Gallery',
               style: TextStyle(
                 fontSize: 25,
@@ -40,19 +40,19 @@ class SGalleryTest extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Expanded(child: Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 30,
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               ),
-              child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              child: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
