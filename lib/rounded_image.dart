@@ -4,7 +4,7 @@ class SRoundedImage extends StatelessWidget {
   const SRoundedImage({
     super.key,
     this.width = 500,
-    this.height = 500,
+    this.height = 300,
     required this.imageUrl,
     this.applyImageRadius = true,
     this.border,

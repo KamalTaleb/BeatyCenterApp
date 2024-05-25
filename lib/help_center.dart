@@ -38,7 +38,7 @@ class HelpCenter extends StatelessWidget {
             leading: Icon(Icons.mail,
               color: Colors.teal[700],),
             title: Text('Email'),
-            subtitle: Text('sanyar.ghemrawi@gmail.com'),
+            subtitle: Text('sanyar.ghemrawi7@gmail.com'),
             onTap: () {},
           ),
           Divider(),
