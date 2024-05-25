@@ -43,7 +43,9 @@ dependencies:
   email_validator: ^2.0.1
   email_otp: ^1.0.4
   font_awesome_flutter: ^9.2.0
-
+  table_calendar: ^3.0.8
+  lottie: ^2.0.0
+  
   http: any
 dev_dependencies:
   flutter_test:
