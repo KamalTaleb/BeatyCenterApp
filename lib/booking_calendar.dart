@@ -1,5 +1,6 @@
 import 'package:beauty_center/button.dart';
 import 'package:beauty_center/custom_appbar.dart';
+import 'package:beauty_center/success_booked.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -118,7 +119,11 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
               child: SButton(
                 width: double.infinity,
                 title: 'Make Appointment',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const SAppointmentBooked(),
+                  ));
+                },
                 disable: _timeSelected && _dateSelected ? false : true,
               ),
             ),
