@@ -1,24 +1,37 @@
-import 'package:beauty_center/details.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
+import 'details.dart';
 
+class SGalleryTest extends StatefulWidget {
+  @override
+  _SGalleryTestState createState() => _SGalleryTestState();
+}
 
+class _SGalleryTestState extends State<SGalleryTest> {
+  List<String> _images = [];
 
-List<SImageDetails> _images =[
-  SImageDetails(imagePath: 'images/nails1.jpg', details: 'Pose vernis', speciality: 'Hoda',title: 'Nails'),
-  SImageDetails(imagePath: 'images/makeup1.jpg', details: 'Full makeup', speciality: 'Maria',title: 'Makeup'),
-  SImageDetails(imagePath: 'images/nails2.jpg', details: 'Gelish', speciality: 'Siham',title: 'Nails'),
-  SImageDetails(imagePath: 'images/hair1.jpg', details: 'Highlights', speciality: 'Sahar',title: 'Hair'),
-  SImageDetails(imagePath: 'images/hair2.jpg', details: 'Half-do', speciality: 'Hadil',title: 'Hair'),
-  SImageDetails(imagePath: 'images/nails3.jpg', details: 'Extension Gelish', speciality: 'Hoda',title: 'Nails'),
-  SImageDetails(imagePath: 'images/makeup2.jpg', details: 'Birdal Glam', speciality: 'Lea',title: 'Makeup'),
-  SImageDetails(imagePath: 'images/hair3.jpg', details: 'Half-do', speciality: 'Sahar',title: 'Hair'),
+  @override
+  void initState() {
+    super.initState();
+    _fetchImages();
+  }
 
+  Future<void> _fetchImages() async {
+    var response = await http.get(Uri.parse('http://localhost/senior/get_gallery_images.php'));
 
-];
-
-
-class SGalleryTest extends StatelessWidget {
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      setState(() {
+        _images = List<String>.from(data['images']);
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to load images')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +45,7 @@ class SGalleryTest extends StatelessWidget {
               height: 40,
             ),
             Text(
-                'Services Gallery',
+              'Services Gallery',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
@@ -43,66 +56,58 @@ class SGalleryTest extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            Expanded(child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 30,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              ),
-              child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-                  itemBuilder: (context, index){
-                return RawMaterialButton(
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SGalleryDetails(
-                        imagePath: _images[index].imagePath,
-                        title: _images[index].title,
-                        speciality: _images[index].speciality,
-                        details: _images[index].details,
-                        index: index,
-                      ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 30,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+                ),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return RawMaterialButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SGalleryDetails(
+                            imagePath: 'http://localhost/senior/uploads/${_images[index]}',
+                            title: 'Service Title', // You can update this according to your needs
+                            speciality: 'Service Specialty', // You can update this according to your needs
+                            details: 'Service Details', // You can update this according to your needs
+                            index: index,
+                          ),
+                          ),
+                        );
+                      },
+                      child: Hero(
+                        tag: 'logo$index',
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                              image: NetworkImage('http://localhost/senior/uploads/${_images[index]}'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   },
-                child: Hero(
-                  tag: 'logo$index',
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        image: AssetImage(_images[index].imagePath),
-                      ),
-                    ),
-                  ),
+                  itemCount: _images.length,
                 ),
-                );
-                  },
-                itemCount: _images.length,
               ),
-            ),
             ),
           ],
         ),
-      )
+      ),
     );
   }
-}
-
-
-class SImageDetails{
-  final String imagePath, speciality, title, details;
-  SImageDetails({
-    required this.imagePath,
-    required this.details,
-    required this.speciality,
-    required this.title,
-  });
 }

@@ -14,10 +14,10 @@ class SPrimaryHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SCurvedEdgeWidget(
       child: Container(
-        color: Colors.blue,
+        color: Colors.teal[700],
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: 400,
+          height: 300,
           child: Stack(
             children: [
               Positioned(
