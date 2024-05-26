@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:beauty_center/navigation_menu.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/welcome_screen.dart';
 import 'package:beauty_center/profile.dart';
@@ -64,7 +65,7 @@ class _SignInPageState extends State<SignInPage> {
 
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (builder) {
-        return const Profile();
+        return const NavigationMenu();
       }));
     } else {
       _showSnackBar("Invalid email or password");

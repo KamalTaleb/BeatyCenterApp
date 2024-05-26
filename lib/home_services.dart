@@ -1,13 +1,14 @@
 import 'package:beauty_center/vertical_image_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 
 class SHomeServices extends StatelessWidget {
   const SHomeServices({super.key});
 
   final List<Map<String, dynamic>> services = const [
     {
-      'icon': FontAwesomeIcons.magic,
+      'icon': Iconsax.magic_star,
       'title': 'Makeup',
     },
     {

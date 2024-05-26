@@ -1,10 +1,8 @@
 import 'package:beauty_center/appointment_page.dart';
-import 'package:beauty_center/booking%20page.dart';
 import 'package:beauty_center/booking_calendar.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/splash.dart';
 import 'package:beauty_center/staff_test.dart';
-import 'package:beauty_center/upcomming_page.dart';
 
 // import 'package:beauty_center/gallery_test.dart';
 // import 'package:beauty_center/help_center.dart';
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SignUpPage(),
+      home: Splash(),
     );
   }
 }
