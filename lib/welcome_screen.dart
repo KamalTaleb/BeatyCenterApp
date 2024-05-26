@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 10,
                     ),
                     const Text(
-                      "BySabeen",
+                      "The Glow Studio",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
@@ -85,15 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
-                        "TEXT",
+                        "Where your beauty and wellness journey begins. Experience the art of rejuvenation and indulge in our luxurious treatments crafted just for you",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: 15,
                           color: Colors.black.withOpacity(0.6),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
                     Material(
                       color: const Color(0xFF4d6972),
                       borderRadius: BorderRadius.circular(10),

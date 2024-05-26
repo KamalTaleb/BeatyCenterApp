@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:beauty_center/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:typed_data'; // Import for Uint8List
@@ -25,7 +26,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
   }
 
   Future<void> fetchUserData() async {
-    var url = Uri.parse("http://localhost/senior/fetch_users.php");
+    var url = Uri.parse("http://192.168.1.12/senior/fetch_users.php");
     var response = await http.post(url, body: {
       "user_id": widget.userId.toString(),
     });
@@ -38,7 +39,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
           phoneNumberController.text = data['data']['phone'];
           gender = data['data']['gender'];
           if (data['data']['profile_image'] != null) {
-            profileImage = const Base64Decoder().convert(data['data']['profile_image']);
+            profileImage = base64Decode(data['data']['profile_image']);
           }
         });
       } else {
@@ -62,8 +63,11 @@ class _CompleteProfileState extends State<CompleteProfile> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_circle_left_outlined),
           onPressed: () {
-            Navigator.of(context).pop();
-          },
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Profile(),
+              ),
+            );          },
         ),
       ),
       body: Padding(

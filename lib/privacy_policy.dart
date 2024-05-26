@@ -1,3 +1,4 @@
+import 'package:beauty_center/profile.dart';
 import 'package:flutter/material.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
@@ -11,8 +12,11 @@ class PrivacyPolicyPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
-          },
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Profile(),
+              ),
+            );          },
         ),
       ),
       body: SingleChildScrollView(

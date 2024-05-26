@@ -120,7 +120,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Personalized Beauty Recommendations",
+                          "Personalized Recommendations",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "Discover your pperfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
+                          "Discover your perfect beauty regimen with tailored suggestions based on your skin type, preferences, and goals. Elevate your beauty routine with expert advice.",
                           textAlign: TextAlign.center,
                         ),
                       ],

@@ -1,3 +1,4 @@
+import 'package:beauty_center/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -15,8 +16,11 @@ class HelpCenter extends StatelessWidget {
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.of(context).pop();
-            }
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => Profile(),
+                ),
+              );            }
         ),
       ),
 

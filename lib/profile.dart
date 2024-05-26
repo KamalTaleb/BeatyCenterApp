@@ -1,5 +1,12 @@
+import 'dart:convert';
+import 'package:beauty_center/help_center.dart';
+import 'package:beauty_center/password_manager.dart';
+import 'package:beauty_center/privacy_policy.dart';
+import 'package:beauty_center/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:typed_data'; // Import for Uint8List
 import 'edit_profile.dart';
 
 class Profile extends StatefulWidget {
@@ -11,6 +18,8 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int? userId;
+  String? username;
+  Uint8List? profileImage;
 
   @override
   void initState() {
@@ -20,11 +29,76 @@ class _ProfileState extends State<Profile> {
 
   Future<void> _loadUserId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userId = prefs.getInt('user_id');
-    });
+    userId = prefs.getInt('user_id');
+    if (userId != null) {
+      await _fetchUserData(userId!);
+    }
   }
 
+  Future<void> _fetchUserData(int userId) async {
+    var url = Uri.parse("http://192.168.1.12/senior/fetch_users.php");
+    var response = await http.post(url, body: {
+      "user_id": userId.toString(),
+    });
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      if (data['success']) {
+        setState(() {
+          username = data['data']['name'];
+          if (data['data']['profile_image'] != null) {
+            profileImage = base64Decode(data['data']['profile_image']);
+          }
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(data['error']),
+          backgroundColor: Colors.red,
+        ));
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Failed to fetch user data"),
+        backgroundColor: Colors.red,
+      ));
+    }
+  }
+  Future<void> _logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('user_id');
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => SignInPage()),
+          (Route<dynamic> route) => false,
+    );
+  }
+
+
+  void _showLogoutDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout'),
+          content: Text('Are you sure you want to log out?'),
+          actions: [
+            TextButton(
+              child: Text('Cancel', style: TextStyle(color: Colors.teal[700])),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Yes, Logout', style: TextStyle(color: Colors.teal[700])),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _logout();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,17 +118,22 @@ class _ProfileState extends State<Profile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage('images/logo1.PNG'),
-                ),
-                SizedBox(width: 20),
-                Text('Username', style: TextStyle(fontSize: 20)),
-              ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              color: Colors.grey[300],
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: profileImage != null
+                        ? MemoryImage(profileImage!)
+                        : const AssetImage('images/logo1.PNG') as ImageProvider,
+                  ),
+                  const SizedBox(width: 20),
+                  Text(username ?? 'Username', style: const TextStyle(fontSize: 20)),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 20),
@@ -63,9 +142,9 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
                 ListTile(
-                  leading: const Icon(Icons.person_2_outlined),
+                  leading: Icon(Icons.person_2_outlined, color: Colors.teal[700]),
                   title: const Text('Your Profile'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
+                  trailing:  Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
                   onTap: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
@@ -76,45 +155,75 @@ class _ProfileState extends State<Profile> {
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.heart_broken_outlined),
+                  leading:  Icon(Icons.heart_broken_outlined, color: Colors.teal[700]),
                   title: const Text('Saved'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  trailing: Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => HelpCenter(),
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.notification_add_outlined),
+                  leading:  Icon(Icons.notification_add_outlined, color: Colors.teal[700]),
                   title: const Text('Notification Settings'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  trailing:  Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => HelpCenter(),
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.vpn_key_outlined),
+                  leading:  Icon(Icons.vpn_key_outlined, color: Colors.teal[700]),
                   title: const Text('Password Manager'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  trailing:  Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => PasswordManager(),
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.help_outline),
+                  leading:  Icon(Icons.help_outline,color: Colors.teal[700]),
                   title: const Text('Help Center'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  trailing:  Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => HelpCenter(),
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.privacy_tip_outlined),
+                  leading:  Icon(Icons.privacy_tip_outlined, color: Colors.teal[700]),
                   title: const Text('Privacy Policy'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  trailing:  Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => PrivacyPolicyPage(),
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.logout_rounded),
-                  title: const Text('Log out'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  leading: Icon(Icons.logout_rounded, color: Colors.teal[700]),
+                  title: Text('Log out'),
+                  trailing: Icon(Icons.arrow_forward_ios, color: Colors.teal[700]),
+                  onTap: _showLogoutDialog,
                 ),
               ],
             ),

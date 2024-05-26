@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:beauty_center/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +37,26 @@ class _PasswordManagerState extends State<PasswordManager> {
     });
   }
 
+  List<String> _validatePassword(String password) {
+    List<String> errors = [];
+    if (password.length < 8) {
+      errors.add("Password must be at least 8 characters long.");
+    }
+    if (!RegExp(r'[A-Z]').hasMatch(password)) {
+      errors.add("Password must include at least one uppercase letter.");
+    }
+    if (!RegExp(r'[a-z]').hasMatch(password)) {
+      errors.add("Password must include at least one lowercase letter.");
+    }
+    if (!RegExp(r'\d').hasMatch(password)) {
+      errors.add("Password must include at least one digit.");
+    }
+    if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password)) {
+      errors.add("Password must include at least one special character.");
+    }
+    return errors;
+  }
+
   Future<void> _changePassword() async {
     if (currentPasswordController.text.isEmpty ||
         newPasswordController.text.isEmpty ||
@@ -49,7 +70,15 @@ class _PasswordManagerState extends State<PasswordManager> {
       return;
     }
 
-    var url = Uri.parse("http://localhost/senior/new_password.php");
+    List<String> passwordErrors = _validatePassword(newPasswordController.text);
+    if (passwordErrors.isNotEmpty) {
+      for (var error in passwordErrors) {
+        _showSnackBar(error);
+      }
+      return;
+    }
+
+    var url = Uri.parse("http://192.168.1.12/senior/new_password.php");
     var response = await http.post(url, body: {
       "user_id": userId.toString(),
       "current_password": currentPasswordController.text,
@@ -81,7 +110,11 @@ class _PasswordManagerState extends State<PasswordManager> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
+                  ),
+                );
               }),
         ),
         body: Padding(
@@ -167,7 +200,7 @@ class _PasswordManagerState extends State<PasswordManager> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Text(
-                    "Sign Up",
+                    "Change Password",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,

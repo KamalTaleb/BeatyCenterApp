@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:email_otp/email_otp.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:beauty_center/home.dart';
+
+import 'complete_profile.dart'; // Import HomePage
 
 class VerificationScreen extends StatefulWidget {
   final EmailOTP myauth;
@@ -30,6 +34,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
     bool result = await widget.myauth.verifyOTP(otp: otp);
     if (result) {
       _showSnackBar("OTP is verified");
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      int? userId = prefs.getInt('user_id');
+      if (userId != null) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => completePage(userId: userId)),
+        );
+      }
     } else {
       _showSnackBar("Invalid OTP");
     }

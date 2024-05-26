@@ -45,7 +45,7 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    var url = Uri.parse("http://localhost/senior/login.php");
+    var url = Uri.parse("http://192.168.1.12/senior/login.php");
     var response = await http.post(url, body: {
       "email": email.text,
       "password": password.text,

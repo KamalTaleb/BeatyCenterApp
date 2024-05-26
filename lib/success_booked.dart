@@ -16,7 +16,7 @@ class SAppointmentBooked extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Lottie.asset(
-                "assets/success.json",
+                'assets/success.json',
               ),
             ),
             Container(

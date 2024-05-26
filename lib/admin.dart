@@ -60,7 +60,7 @@ class _AdminState extends State<Admin> {
       return;
     }
 
-    var request = http.MultipartRequest('POST', Uri.parse('http://localhost/senior/add_staff.php'));
+    var request = http.MultipartRequest('POST', Uri.parse('http://192.168.1.12/senior/add_staff.php'));
     request.fields['name'] = _nameController.text;
     request.fields['email'] = _emailController.text;
     request.fields['password'] = _passwordController.text;
@@ -88,7 +88,7 @@ class _AdminState extends State<Admin> {
   }
 
   Future<void> _deleteStaff(int id) async {
-    var response = await http.get(Uri.parse('http://localhost/senior/delete_staff.php?id=$id'));
+    var response = await http.get(Uri.parse('http://192.168.1.8/senior/delete_staff.php?id=$id'));
     if (response.statusCode == 200) {
       _showSnackBar('Staff deleted successfully');
     } else {
@@ -97,7 +97,7 @@ class _AdminState extends State<Admin> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchStaff() async {
-    var response = await http.get(Uri.parse('http://localhost/senior/get_all_staff.php'));
+    var response = await http.get(Uri.parse('http://192.168.1.8/senior/get_all_staff.php'));
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> staff = List<Map<String, dynamic>>.from(json.decode(response.body));
       print("Fetched staff: $staff"); // Debugging message
@@ -238,7 +238,7 @@ class _AdminState extends State<Admin> {
         _galleryDetailsController.text.isNotEmpty) {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://localhost/senior/upload_gallery_image.php'),
+        Uri.parse('http://192.168.1.12/senior/upload_gallery_image.php'),
       );
       request.fields['title'] = _galleryTitleController.text;
       request.fields['speciality'] = _gallerySpecialityController.text;

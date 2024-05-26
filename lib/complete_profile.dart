@@ -36,7 +36,7 @@ class _completePageState extends State<completePage> {
       return;
     }
 
-    var url = Uri.parse("http://localhost/senior/complete_profile.php");
+    var url = Uri.parse("http://192.168.1.12/senior/complete_profile.php");
     var request = http.MultipartRequest("POST", url);
     request.fields['user_id'] = widget.userId.toString();
     request.fields['phone'] = phoneNumberController.text;
@@ -118,7 +118,9 @@ class _completePageState extends State<completePage> {
                   children: [
                     _image != null
                         ? CircleAvatar(
-                        radius: 100, backgroundImage: MemoryImage(_image!))
+                      radius: 100,
+                      backgroundImage: MemoryImage(_image!),
+                    )
                         : const CircleAvatar(
                       radius: 100,
                       backgroundImage: NetworkImage(
