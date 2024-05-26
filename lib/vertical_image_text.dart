@@ -4,14 +4,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SVerticalImageText extends StatelessWidget {
   const SVerticalImageText({
     super.key,
-    required this.image,
+    // required this.image,
     required this.title,
     this.textColor = Colors.white,
     this.backgroundColor,
     this.onTap,
+    required this.icon,
   });
 
-  final String image, title;
+  final String title;
+  final IconData icon;
   final Color textColor;
   final Color? backgroundColor;
   final void Function()? onTap;
@@ -33,9 +35,8 @@ class SVerticalImageText extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
+                child: Icon(
+                  icon,
                 ),
               ),
             ),
