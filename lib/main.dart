@@ -1,7 +1,13 @@
+import 'package:beauty_center/add_feedback.dart';
 import 'package:beauty_center/appointment_page.dart';
-import 'package:beauty_center/booking%20page.dart';
 import 'package:beauty_center/booking_calendar.dart';
-import 'package:beauty_center/upcomming_page.dart';
+import 'package:beauty_center/booking_page.dart';
+import 'package:beauty_center/cancel_booking.dart';
+import 'package:beauty_center/home.dart';
+import 'package:beauty_center/navigation_menu.dart';
+import 'package:beauty_center/services_card_horizontal.dart';
+import 'package:beauty_center/services_card_vertical.dart';
+import 'package:beauty_center/upcoming_page.dart';
 
 // import 'package:beauty_center/gallery_test.dart';
 // import 'package:beauty_center/help_center.dart';
@@ -28,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SBookingCalendarPage(),
+      home: NavigationMenu(),
     );
   }
 }

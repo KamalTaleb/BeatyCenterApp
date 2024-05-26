@@ -1,33 +1,25 @@
-import 'package:beauty_center/gallery_test.dart';
 import 'package:beauty_center/home_services.dart';
 import 'package:beauty_center/promo_slider.dart';
 import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:beauty_center/section_heading.dart';
-import 'package:beauty_center/services_card_horizontal.dart';
+import 'package:beauty_center/show_gallery.dart';
+import 'package:beauty_center/show_staff.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-//
-// List<SImageDetails> _images =[
-//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
-//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
-//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
-//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
-//   SImageDetails(imagePath: 'imagePath', details: 'details', photographer: 'photographer', price: 'price', title: 'title'),
-// ];
 
 class homePage extends StatelessWidget {
   const homePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SPrimaryHeaderContainer(
+            const SPrimaryHeaderContainer(
               child: Column(
                 children: [
                   SizedBox(
@@ -57,35 +49,32 @@ class homePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   const SPromoSlider(),
                   const SizedBox(
                     height: 32.0,
                   ),
-                  GridView.builder(
-                    itemCount: 4,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 16.0,
-                    crossAxisSpacing: 16.0,
-                    mainAxisExtent: 288,
+                  SShowStaff(
+                    title: 'Meet Our Staff Members',
+                    imageUrl: 'images/home1.JPG',
+                    buttonText: 'Show',
                   ),
-                    itemBuilder: (_, index)=> const SServicesCardHorizontal(),
+                  const SizedBox(
+                    height: 32.0,
                   ),
-                  // SGalleryTest(),
+                  SShowGallery(
+                    title: 'Show Gallery',
+                    imageUrl: 'images/home2.JPG',
+                    buttonText: 'Show',
+                  ),
                 ],
-                // banners: [],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32.0,
             ),
-            // SGalleryTest(),
 
             // Expanded(
             //     child: GridView.builder(
@@ -113,12 +102,3 @@ class homePage extends StatelessWidget {
     );
   }
 }
-//
-// class SImageDetails{
-//   final String imagePath, price, photographer, title, details;
-//   SImageDetails({required this.imagePath,
-//     required this.details,
-//     required this.photographer,
-//     required this.price,
-//     required this.title,});
-// }

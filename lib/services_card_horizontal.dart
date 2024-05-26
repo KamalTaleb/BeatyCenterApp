@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
-
 class SServicesCardHorizontal extends StatelessWidget {
   const SServicesCardHorizontal({super.key});
 
@@ -19,20 +18,21 @@ class SServicesCardHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = SHelperFunction.isDarkMode(context);
     return GestureDetector(
-      onTap: (){},
+      onTap: () {},
       child: Container(
         width: 310,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),
-          color: dark ? const Color(0xFF939393) :const Color(0xFFF4F4F4),
+          color: dark ? const Color(0xFF939393) : const Color(0xFFF4F4F4),
         ),
         child: Row(
           children: [
             SRoundedContainer(
               height: 120,
               padding: const EdgeInsets.all(8.0),
-              backgroundColor: dark ? const Color(0xFF272727): const Color(0xFFF6F6F6),
+              backgroundColor:
+                  dark ? const Color(0xFF272727) : const Color(0xFFF6F6F6),
               child: Stack(
                 children: [
                   const SizedBox(
@@ -43,16 +43,19 @@ class SServicesCardHorizontal extends StatelessWidget {
                       applyImageRadius: true,
                     ),
                   ),
-
                   Positioned(
                     top: 12,
                     child: SRoundedContainer(
                       radius: 8.0,
-                      backgroundColor: Color(0xFFFFE24B).withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4.0),
+                      backgroundColor: const Color(0xFFFFE24B).withOpacity(0.8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 4.0),
                       child: Text(
                         '25%',
-                        style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.black),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .apply(color: Colors.black),
                       ),
                     ),
                   ),
@@ -60,7 +63,7 @@ class SServicesCardHorizontal extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 172,
+              width: 80,
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                 child: Column(
@@ -69,9 +72,9 @@ class SServicesCardHorizontal extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SServiceTitleText(
-                        title: 'service one',
-                        smallSize: true,
-                      ),
+                          title: 'service one',
+                          smallSize: true,
+                        ),
                         SizedBox(
                           height: 4.0,
                         ),
@@ -83,9 +86,9 @@ class SServicesCardHorizontal extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Flexible(
-                            child: SServicePriceText(
-                                price: '256.0',
-                            ),
+                          child: SServicePriceText(
+                            price: '256.0',
+                          ),
                         ),
                         Container(
                           decoration: const BoxDecoration(

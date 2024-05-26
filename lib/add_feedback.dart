@@ -1,15 +1,18 @@
+import 'package:beauty_center/navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class FeedbackPage extends StatefulWidget {
+  const FeedbackPage({super.key});
+
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
   String? _selectedRating;
-  TextEditingController _feedbackController = TextEditingController();
+  final TextEditingController _feedbackController = TextEditingController();
   PlatformFile? _selectedFile;
 
   @override
@@ -39,12 +42,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add feedback'),
+        title: const Text('Add feedback'),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const NavigationMenu(),
+              ),
+            );
           },
         ),
       ),
@@ -53,35 +60,35 @@ class _FeedbackPageState extends State<FeedbackPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Reviews',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildRatingRadio('4.5 and above', 4.5),
             _buildRatingRadio('4.0 - 4.5', 4.0),
             _buildRatingRadio('3.5 - 4.0', 3.5),
             _buildRatingRadio('3.0 - 3.5', 3.0),
             _buildRatingRadio('2.5 - 3.0', 2.5),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Add Feedback',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: _feedbackController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'File Upload',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             GestureDetector(
               onTap: _pickFile,
               child: Container(
@@ -94,31 +101,31 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
                 child: _selectedFile == null
                     ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.cloud_upload_outlined,
-                        size: 50,
-                        color: Colors.teal[700],
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Drag Files to Upload or Browse Files',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                )
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.cloud_upload_outlined,
+                              size: 50,
+                              color: Colors.teal[700],
+                            ),
+                            const SizedBox(height: 10),
+                            const Text(
+                              'Drag Files to Upload or Browse Files',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      )
                     : Center(
-                  child: Text(
-                    _selectedFile!.name,
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
+                        child: Text(
+                          _selectedFile!.name,
+                          style: const TextStyle(color: Colors.grey),
+                        ),
+                      ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.only(top: 3, left: 3),
               decoration: BoxDecoration(
@@ -169,7 +176,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             itemSize: 20.0,
             direction: Axis.horizontal,
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Text(rating),
         ],
       ),

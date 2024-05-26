@@ -13,4 +13,4 @@ enum PaymentMethods {
   paytm
 }
 
-enum FilterStatus { upcomming, complete, cancel }
+enum FilterStatus { upcoming, complete, cancel }

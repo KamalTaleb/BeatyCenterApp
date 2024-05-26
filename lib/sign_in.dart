@@ -62,7 +62,8 @@ class _SignInPageState extends State<SignInPage> {
 
       _showSnackBar("Login successful as $role");
 
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (builder) {
         return const Profile();
       }));
     } else {
@@ -80,9 +81,11 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const MyHomePage(),
-            ));
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const MyHomePage(),
+              ),
+            );
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -211,7 +214,9 @@ class _SignInPageState extends State<SignInPage> {
                         child: Text(
                           " Sign Up",
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18, color: Colors.teal[700]),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                              color: Colors.teal[700]),
                         ),
                       )
                     ],

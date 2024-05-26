@@ -1,13 +1,17 @@
+import 'package:beauty_center/navigation_menu.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CancelBookingPage extends StatefulWidget {
+  const CancelBookingPage({super.key});
+
   @override
   _CancelBookingPageState createState() => _CancelBookingPageState();
 }
 
 class _CancelBookingPageState extends State<CancelBookingPage> {
   String? _selectedReason;
-  TextEditingController _otherReasonController = TextEditingController();
+  final TextEditingController _otherReasonController = TextEditingController();
 
   @override
   void dispose() {
@@ -17,19 +21,25 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
 
   void _cancelBooking() {
     String reason = _selectedReason ?? 'Other: ${_otherReasonController.text}';
-    print('Booking cancelled due to: $reason');
+    if (kDebugMode) {
+      print('Booking cancelled due to: $reason');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cancel Booking'),
+        title: const Text('Cancel Booking'),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const NavigationMenu(),
+              ),
+            );
           },
         ),
       ),
@@ -38,11 +48,11 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Please select the reason for cancellation:',
               style: TextStyle(fontSize: 16, color: Colors.black45),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
               title: Text('Scheduling Conflicts'),
@@ -57,7 +67,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
             ),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
-              title: Text('Health Issues'),
+              title: const Text('Health Issues'),
               value: 'Health Issues',
               groupValue: _selectedReason,
               onChanged: (value) {
@@ -69,7 +79,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
             ),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
-              title: Text('Personal Reasons'),
+              title: const Text('Personal Reasons'),
               value: 'Personal Reasons',
               groupValue: _selectedReason,
               onChanged: (value) {
@@ -81,7 +91,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
             ),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
-              title: Text('Financial Constraints'),
+              title: const Text('Financial Constraints'),
               value: 'Financial Constraints',
               groupValue: _selectedReason,
               onChanged: (value) {
@@ -93,7 +103,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
             ),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
-              title: Text('Weather Conditions'),
+              title: const Text('Weather Conditions'),
               value: 'Weather Conditions',
               groupValue: _selectedReason,
               onChanged: (value) {
@@ -105,7 +115,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
             ),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
-              title: Text('Dissatisfaction with Service'),
+              title: const Text('Dissatisfaction with Service'),
               value: 'Dissatisfaction with Service',
               groupValue: _selectedReason,
               onChanged: (value) {
@@ -117,7 +127,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
             ),
             RadioListTile<String>(
               activeColor: Colors.teal[700],
-              title: Text('Other reasons'),
+              title: const Text('Other reasons'),
               value: 'Other reasons',
               groupValue: _selectedReason,
               onChanged: (value) {
@@ -132,14 +142,14 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
                 padding: const EdgeInsets.only(top: 10),
                 child: TextField(
                   controller: _otherReasonController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Enter your Reason',
                     border: OutlineInputBorder(),
                   ),
-                  maxLines: 3,
+                  maxLines: 2,
                 ),
               ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -148,10 +158,11 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                 ),
                 onPressed: _cancelBooking,
-                child: Text('Cancel Booking', style: TextStyle(color: Colors.white)),
+                child: const Text('Cancel Booking',
+                    style: TextStyle(color: Colors.white)),
               ),
             ),
           ],
