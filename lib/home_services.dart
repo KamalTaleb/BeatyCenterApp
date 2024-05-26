@@ -54,7 +54,7 @@ class SHomeServices extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, index) {
           return SVerticalImageText(
-            icon: services[index]['icon'] as IconData,
+            image: "images/onboarding1.PNG",
             title: services[index]['title'] as String,
             onTap: () {},
           );
