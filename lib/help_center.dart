@@ -1,4 +1,4 @@
-import 'package:beauty_center/profile.dart';
+import 'package:beauty_center/screens/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -11,7 +11,10 @@ class HelpCenter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Help Center', style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          'Help Center',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -20,44 +23,49 @@ class HelpCenter extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => Profile(),
                 ),
-              );            }
-        ),
+              );
+            }),
       ),
-
       body: ListView(
         padding: EdgeInsets.all(8.0),
         children: [
           Text('Contact Us:'),
-
-          SizedBox(height:10),
+          SizedBox(height: 10),
           ListTile(
-            leading: Icon(Icons.phone, color: Colors.teal[700],),
+            leading: Icon(
+              Icons.phone,
+              color: Colors.teal[700],
+            ),
             title: Text('Phone'),
             subtitle: Text('+961 76 380 561'),
-            onTap: () {
-            },
+            onTap: () {},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.mail,
-              color: Colors.teal[700],),
+            leading: Icon(
+              Icons.mail,
+              color: Colors.teal[700],
+            ),
             title: Text('Email'),
             subtitle: Text('sanyar.ghemrawi7@gmail.com'),
             onTap: () {},
           ),
           Divider(),
           ListTile(
-            leading: FaIcon(FontAwesomeIcons.twitter,
-              color: Colors.teal[700],),
+            leading: FaIcon(
+              FontAwesomeIcons.twitter,
+              color: Colors.teal[700],
+            ),
             title: Text('Twitter'),
             subtitle: Text('sanyar.ghemrawi'),
-            onTap: () {
-            },
+            onTap: () {},
           ),
           Divider(),
           ListTile(
-            leading: FaIcon(FontAwesomeIcons.whatsapp,
-              color: Colors.teal[700],),
+            leading: FaIcon(
+              FontAwesomeIcons.whatsapp,
+              color: Colors.teal[700],
+            ),
             title: Text('WhatsApp'),
             subtitle: Text('+1234567890'),
             onTap: () {
@@ -66,20 +74,23 @@ class HelpCenter extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: FaIcon(FontAwesomeIcons.facebook,
-              color: Colors.teal[700],),
+            leading: FaIcon(
+              FontAwesomeIcons.facebook,
+              color: Colors.teal[700],
+            ),
             title: Text('Facebook'),
             subtitle: Text('Sanyar Ghemrawi'),
             onTap: () {},
           ),
           Divider(),
           ListTile(
-            leading: FaIcon(FontAwesomeIcons.instagram,
-              color: Colors.teal[700],),
+            leading: FaIcon(
+              FontAwesomeIcons.instagram,
+              color: Colors.teal[700],
+            ),
             title: Text('Instagram'),
             subtitle: Text('@sanyar.ghemrawi'),
-            onTap: () {
-            },
+            onTap: () {},
           ),
         ],
       ),

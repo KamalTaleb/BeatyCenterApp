@@ -2,7 +2,6 @@ import 'package:beauty_center/canceled_page.dart';
 import 'package:beauty_center/completed_page.dart';
 import 'package:beauty_center/upcoming_page.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class SBookingPage extends StatelessWidget {
   const SBookingPage({

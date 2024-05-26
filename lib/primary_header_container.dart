@@ -1,5 +1,5 @@
 import 'package:beauty_center/circular_container.dart';
-import 'package:beauty_center/curved_edge_widget.dart';
+import 'package:beauty_center/custom/curvedEdges/curved_edge_widget.dart';
 import 'package:flutter/material.dart';
 
 class SPrimaryHeaderContainer extends StatelessWidget {

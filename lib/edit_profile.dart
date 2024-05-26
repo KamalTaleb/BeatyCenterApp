@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:beauty_center/profile.dart';
+import 'package:beauty_center/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:typed_data'; // Import for Uint8List
@@ -67,7 +67,8 @@ class _CompleteProfileState extends State<CompleteProfile> {
               MaterialPageRoute(
                 builder: (context) => Profile(),
               ),
-            );          },
+            );
+          },
         ),
       ),
       body: Padding(

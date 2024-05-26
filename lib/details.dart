@@ -1,13 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SGalleryDetails extends StatelessWidget {
-  SGalleryDetails({required this.imagePath, required this.title, required this.speciality, required this.details, required this.index});
-
+  SGalleryDetails(
+      {required this.imagePath,
+      required this.title,
+      required this.speciality,
+      required this.details,
+      required this.index});
 
   final String imagePath, title, speciality, details;
   final int index;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +21,16 @@ class SGalleryDetails extends StatelessWidget {
               child: Hero(
                 tag: 'logo$index',
                 child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
-                  image: DecorationImage(
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30)),
+                    image: DecorationImage(
+                      image: AssetImage(imagePath),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                            ),
               ),
             ),
             Container(
@@ -53,7 +58,9 @@ class SGalleryDetails extends StatelessWidget {
                             fontSize: 15,
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           details,
                           style: TextStyle(

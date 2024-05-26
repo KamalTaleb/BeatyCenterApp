@@ -1,11 +1,9 @@
 import 'package:beauty_center/helper_functions.dart';
 import 'package:beauty_center/rounded_container.dart';
 import 'package:beauty_center/rounded_image.dart';
-import 'package:beauty_center/s_circular_icon.dart';
 import 'package:beauty_center/service_price_text.dart';
 import 'package:beauty_center/service_title_text.dart';
 import 'package:beauty_center/service_title_text_with_verified_icon.dart';
-import 'package:beauty_center/shadows.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

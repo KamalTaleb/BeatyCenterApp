@@ -1,7 +1,7 @@
+import 'package:beauty_center/custom/button.dart';
 import 'package:beauty_center/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:beauty_center/button.dart';
 
 class SAppointmentBooked extends StatelessWidget {
   const SAppointmentBooked({super.key});

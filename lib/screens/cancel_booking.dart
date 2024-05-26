@@ -1,4 +1,5 @@
-import 'package:beauty_center/navigation_menu.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

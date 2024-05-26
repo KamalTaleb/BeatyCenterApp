@@ -1,4 +1,3 @@
-import 'package:beauty_center/circular_container.dart';
 import 'package:beauty_center/home_controller.dart';
 import 'package:beauty_center/rounded_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';

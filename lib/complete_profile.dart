@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:beauty_center/home.dart';
+import 'package:beauty_center/screens/home.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +43,8 @@ class _completePageState extends State<completePage> {
     request.fields['gender'] = _selectedItem;
 
     if (selectedImage != null) {
-      request.files.add(await http.MultipartFile.fromPath('profile_image', selectedImage!.path));
+      request.files.add(await http.MultipartFile.fromPath(
+          'profile_image', selectedImage!.path));
     }
 
     try {
@@ -118,14 +119,14 @@ class _completePageState extends State<completePage> {
                   children: [
                     _image != null
                         ? CircleAvatar(
-                      radius: 100,
-                      backgroundImage: MemoryImage(_image!),
-                    )
+                            radius: 100,
+                            backgroundImage: MemoryImage(_image!),
+                          )
                         : const CircleAvatar(
-                      radius: 100,
-                      backgroundImage: NetworkImage(
-                          "https://images.app.goo.gl/7KgwNKcb19njWod3A"),
-                    ),
+                            radius: 100,
+                            backgroundImage: NetworkImage(
+                                "https://images.app.goo.gl/7KgwNKcb19njWod3A"),
+                          ),
                     Positioned(
                       bottom: -0,
                       left: 140,
@@ -150,7 +151,7 @@ class _completePageState extends State<completePage> {
                     decoration: const InputDecoration(
                       labelText: "Phone number",
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
@@ -168,7 +169,7 @@ class _completePageState extends State<completePage> {
                       suffixIcon: PopupMenuButton<String>(
                         icon: const Icon(Icons.arrow_drop_down),
                         itemBuilder: (BuildContext context) =>
-                        <PopupMenuEntry<String>>[
+                            <PopupMenuEntry<String>>[
                           const PopupMenuItem<String>(
                             value: 'Male',
                             child: Text('Male'),
@@ -291,7 +292,7 @@ class _completePageState extends State<completePage> {
 
   Future _pickImageFromGallery() async {
     final returnImage =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnImage == null) return;
     setState(() {
       selectedImage = File(returnImage.path);
@@ -302,7 +303,7 @@ class _completePageState extends State<completePage> {
 
   Future _pickImageFromCamera() async {
     final returnImage =
-    await ImagePicker().pickImage(source: ImageSource.camera);
+        await ImagePicker().pickImage(source: ImageSource.camera);
     if (returnImage == null) return;
     setState(() {
       selectedImage = File(returnImage.path);

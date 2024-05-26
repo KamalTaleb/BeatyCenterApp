@@ -1,7 +1,6 @@
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:beauty_center/home.dart';
 
 import 'complete_profile.dart'; // Import HomePage
 
@@ -9,7 +8,8 @@ class VerificationScreen extends StatefulWidget {
   final EmailOTP myauth;
   final String email;
 
-  const VerificationScreen({super.key, required this.myauth, required this.email});
+  const VerificationScreen(
+      {super.key, required this.myauth, required this.email});
 
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
@@ -30,7 +30,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
   }
 
   void verifyOTP() async {
-    String otp = _controller1.text + _controller2.text + _controller3.text + _controller4.text;
+    String otp = _controller1.text +
+        _controller2.text +
+        _controller3.text +
+        _controller4.text;
     bool result = await widget.myauth.verifyOTP(otp: otp);
     if (result) {
       _showSnackBar("OTP is verified");

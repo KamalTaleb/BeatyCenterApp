@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'package:beauty_center/navigation_menu.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/welcome_screen.dart';
-import 'package:beauty_center/profile.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,7 +1,5 @@
-import 'package:beauty_center/appointment_page.dart';
-import 'package:beauty_center/gallery_test.dart';
+import 'package:beauty_center/screens/gallery_test.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SShowGallery extends StatelessWidget {
   const SShowGallery({

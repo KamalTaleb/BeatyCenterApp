@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:beauty_center/home.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -146,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: "Name",
                     contentPadding:
-                    EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -158,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: "Email",
                     contentPadding:
-                    EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -176,8 +175,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       onPressed: _toggleVisibility,
                     ),
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 0, horizontal: 10),
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -223,7 +222,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => SignInPage()),
-                    );                  },
+                    );
+                  },
                   child: Text(
                     " Sign In",
                     style: TextStyle(

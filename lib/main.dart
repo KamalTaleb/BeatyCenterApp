@@ -1,21 +1,5 @@
-import 'package:beauty_center/appointment_page.dart';
-import 'package:beauty_center/booking_calendar.dart';
-import 'package:beauty_center/navigation_menu.dart';
-import 'package:beauty_center/sign_up.dart';
-import 'package:beauty_center/splash.dart';
-import 'package:beauty_center/staff_test.dart';
-
-// import 'package:beauty_center/gallery_test.dart';
-// import 'package:beauty_center/help_center.dart';
-// import 'package:beauty_center/home.dart';
-// import 'package:beauty_center/sign_in.dart';
-// import 'package:beauty_center/splash.dart';
-// import 'package:beauty_center/staff_test.dart';
-// import 'package:beauty_center/sub_categories.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'admin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: NavigationMenu(),
+      home: const NavigationMenu(),
     );
   }
 }
