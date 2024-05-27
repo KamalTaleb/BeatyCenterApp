@@ -36,7 +36,7 @@ class _completePageState extends State<completePage> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.12/senior/complete_profile.php");
+    var url = Uri.parse("http://192.168.1.10/senior/complete_profile.php");
     var request = http.MultipartRequest("POST", url);
     request.fields['user_id'] = widget.userId.toString();
     request.fields['phone'] = phoneNumberController.text;

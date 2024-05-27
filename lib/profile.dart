@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:beauty_center/help_center.dart';
 import 'package:beauty_center/password_manager.dart';
 import 'package:beauty_center/privacy_policy.dart';
+import 'package:beauty_center/saved.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +37,7 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> _fetchUserData(int userId) async {
-    var url = Uri.parse("http://192.168.1.12/senior/fetch_users.php");
+    var url = Uri.parse("http://192.168.1.10/senior/fetch_users.php");
     var response = await http.post(url, body: {
       "user_id": userId.toString(),
     });
@@ -161,7 +162,7 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => HelpCenter(),
+                        builder: (context) => SavedImages(),
                       ),
                     );
                   },

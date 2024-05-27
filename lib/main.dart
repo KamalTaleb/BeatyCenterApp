@@ -1,8 +1,10 @@
 import 'package:beauty_center/appointment_page.dart';
 import 'package:beauty_center/booking_calendar.dart';
+import 'package:beauty_center/saved.dart';
+import 'package:beauty_center/sign_in.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/splash.dart';
-import 'package:beauty_center/staff_test.dart';
+import 'package:beauty_center/gallery_test.dart';
 
 // import 'package:beauty_center/gallery_test.dart';
 // import 'package:beauty_center/help_center.dart';
@@ -15,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'admin.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,12 +29,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Splash(),
+      home: homePage(),
     );
   }
 }

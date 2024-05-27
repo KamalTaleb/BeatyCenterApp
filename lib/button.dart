@@ -20,7 +20,7 @@ class SButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.greenAccent,
+          backgroundColor: Colors.teal[700],
           foregroundColor: Colors.white,
         ),
         onPressed: disable ? null : onPressed,

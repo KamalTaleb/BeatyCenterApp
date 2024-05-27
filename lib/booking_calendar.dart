@@ -58,7 +58,7 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
                     ),
                     alignment: Alignment.center,
                     child: const Text(
-                      'Weekend is not available, please select another date',
+                      'Unfortunately, we are not available on weekends, please choose another day',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -69,7 +69,7 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
                 )
               : SliverGrid(
                   delegate: SliverChildBuilderDelegate(
-                    (constext, index) {
+                    (context, index) {
                       return InkWell(
                         splashColor: Colors.transparent,
                         onTap: () {
@@ -88,7 +88,7 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
                             ),
                             borderRadius: BorderRadius.circular(15),
                             color: _currentIndex == index
-                                ? Colors.greenAccent
+                                ? Colors.teal[700]
                                 : null,
                           ),
                           alignment: Alignment.center,
@@ -143,7 +143,7 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
       rowHeight: 48,
       calendarStyle: const CalendarStyle(
         todayDecoration: BoxDecoration(
-          color: Colors.greenAccent,
+          color: Colors.teal,
           shape: BoxShape.circle,
         ),
       ),

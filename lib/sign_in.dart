@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:beauty_center/gallery_test.dart';
 import 'package:beauty_center/navigation_menu.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/welcome_screen.dart';
@@ -46,7 +47,7 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.12/senior/login.php");
+    var url = Uri.parse("http://192.168.1.10/senior/login.php");
     var response = await http.post(url, body: {
       "email": email.text,
       "password": password.text,
@@ -55,7 +56,7 @@ class _SignInPageState extends State<SignInPage> {
     var data = json.decode(response.body);
 
     if (data.containsKey("status") && data["status"] == "Success") {
-      int userId = int.parse(data["user_id"]); // Convert user_id to int
+      int userId = int.parse(data["user_id"]);
       String role = data["role"];
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -65,7 +66,7 @@ class _SignInPageState extends State<SignInPage> {
 
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (builder) {
-        return const NavigationMenu();
+        return const Profile();
       }));
     } else {
       _showSnackBar("Invalid email or password");

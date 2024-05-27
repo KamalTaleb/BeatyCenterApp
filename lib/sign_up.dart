@@ -79,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.12/senior/register.php");
+    var url = Uri.parse("http://192.168.1.10/senior/register.php");
     try {
       var response = await http.post(url, body: {
         "name": name,

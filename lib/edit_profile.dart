@@ -26,7 +26,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
   }
 
   Future<void> fetchUserData() async {
-    var url = Uri.parse("http://192.168.1.12/senior/fetch_users.php");
+    var url = Uri.parse("http://192.168.1.10/senior/fetch_users.php");
     var response = await http.post(url, body: {
       "user_id": widget.userId.toString(),
     });
@@ -61,7 +61,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_circle_left_outlined),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(

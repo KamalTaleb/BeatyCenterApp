@@ -39,6 +39,7 @@ class _AdminState extends State<Admin> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        print('Image selected: ${_image!.path}');  // Debugging message
       } else {
         print('No image selected.');
       }
@@ -60,7 +61,7 @@ class _AdminState extends State<Admin> {
       return;
     }
 
-    var request = http.MultipartRequest('POST', Uri.parse('http://192.168.1.12/senior/add_staff.php'));
+    var request = http.MultipartRequest('POST', Uri.parse('http://192.168.1.10/senior/add_staff.php'));
     request.fields['name'] = _nameController.text;
     request.fields['email'] = _emailController.text;
     request.fields['password'] = _passwordController.text;
@@ -88,7 +89,7 @@ class _AdminState extends State<Admin> {
   }
 
   Future<void> _deleteStaff(int id) async {
-    var response = await http.get(Uri.parse('http://192.168.1.8/senior/delete_staff.php?id=$id'));
+    var response = await http.get(Uri.parse('http://192.168.1.10/senior/delete_staff.php?id=$id'));
     if (response.statusCode == 200) {
       _showSnackBar('Staff deleted successfully');
     } else {
@@ -97,7 +98,7 @@ class _AdminState extends State<Admin> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchStaff() async {
-    var response = await http.get(Uri.parse('http://192.168.1.8/senior/get_all_staff.php'));
+    var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_all_staff.php'));
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> staff = List<Map<String, dynamic>>.from(json.decode(response.body));
       print("Fetched staff: $staff"); // Debugging message
@@ -169,10 +170,6 @@ class _AdminState extends State<Admin> {
                 decoration: InputDecoration(labelText: 'Note'),
               ),
               SizedBox(height: 20),
-              _image == null
-                  ? Text('No image selected.')
-                  : Image.file(_image!, height: 100, width: 100),
-              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _pickImage,
                 child: Text('Pick Image', style: TextStyle(color: Colors.black)),
@@ -199,14 +196,15 @@ class _AdminState extends State<Admin> {
             future: _fetchStaff(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                 return Text('No staff found');
               } else {
                 return SizedBox(
-                  height: 200, // Adjust the height as needed
+                  height: 200,
+                  width: double.maxFinite,
                   child: ListView(
                     shrinkWrap: true,
                     children: snapshot.data!.map((staff) {
@@ -215,7 +213,8 @@ class _AdminState extends State<Admin> {
                         trailing: IconButton(
                           icon: Icon(Icons.delete),
                           onPressed: () {
-                            _deleteStaff(staff['id']);
+                            int id = int.tryParse(staff['id'].toString()) ?? 0;
+                            _deleteStaff(id);
                             Navigator.of(context).pop();
                           },
                         ),
@@ -231,6 +230,8 @@ class _AdminState extends State<Admin> {
     );
   }
 
+
+
   Future<void> _uploadGalleryImage() async {
     if (_image != null &&
         _galleryTitleController.text.isNotEmpty &&
@@ -238,7 +239,7 @@ class _AdminState extends State<Admin> {
         _galleryDetailsController.text.isNotEmpty) {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://192.168.1.12/senior/upload_gallery_image.php'),
+        Uri.parse('http://192.168.1.10/senior/add_gallery_image.php'),
       );
       request.fields['title'] = _galleryTitleController.text;
       request.fields['speciality'] = _gallerySpecialityController.text;
@@ -276,14 +277,14 @@ class _AdminState extends State<Admin> {
               children: <Widget>[
                 _image == null
                     ? Text('No image selected.')
-                    : Image.file(_image!, height: 100, width: 100),
+                    : Text('Image is selected.'),
                 TextField(
                   controller: _galleryTitleController,
                   decoration: InputDecoration(labelText: 'Title'),
                 ),
                 TextField(
                   controller: _gallerySpecialityController,
-                  decoration: InputDecoration(labelText: 'Speciality'),
+                  decoration: InputDecoration(labelText: 'Staff'),
                 ),
                 TextField(
                   controller: _galleryDetailsController,

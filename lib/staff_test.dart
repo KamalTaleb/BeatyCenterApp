@@ -1,61 +1,47 @@
-import 'package:beauty_center/details.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:beauty_center/details.dart';
 
-List<SImageDetails> _images = [
-  SImageDetails(
-      imagePath: 'images/hairstylist1.jpg',
-      details: 'details',
-      speciality: 'Nails',
-      title: 'Hoda'),
-  SImageDetails(
-      imagePath: 'images/facial1.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/hairstylist2.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/lashtech1.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/nailtech1.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/mua1.jpg',
-      details: 'details',
-      speciality: 'Makeup Artist',
-      title: 'Maria'),
-  SImageDetails(
-      imagePath: 'images/lashtech2.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/facial2.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/mua2.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'title'),
-  SImageDetails(
-      imagePath: 'images/nailtech2.jpg',
-      details: 'details',
-      speciality: 'photographer',
-      title: 'Siham'),
-];
 
-class SStaffTest extends StatelessWidget {
+class SStaffTest extends StatefulWidget {
   const SStaffTest({super.key});
+
+  @override
+  State<SStaffTest> createState() => _SStaffTestState();
+}
+
+class _SStaffTestState extends State<SStaffTest> {
+  List<SImageDetails> _images = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchStaff();
+  }
+
+  Future<void> _fetchStaff() async {
+    try {
+      var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_all_staff.php'));
+      if (response.statusCode == 200) {
+        List<dynamic> staffList = json.decode(response.body);
+        setState(() {
+          _images = staffList.map((staff) {
+            return SImageDetails(
+              imagePath: staff['image'] ?? '',
+              details: staff['note'] ?? '',
+              speciality: staff['specialty'] ?? '',
+              title: staff['name'] ?? '',
+            );
+          }).toList();
+        });
+      } else {
+        print('Failed to load staff');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +80,7 @@ class SStaffTest extends StatelessWidget {
                   ),
                   child: GridView.builder(
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -121,7 +107,10 @@ class SStaffTest extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
-                                image: AssetImage(_images[index].imagePath),
+                                image: _images[index].imagePath.isNotEmpty
+                                    ? NetworkImage('http://192.168.1.10/senior/${_images[index].imagePath}')
+                                    : AssetImage('images/default.jpg') as ImageProvider,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),

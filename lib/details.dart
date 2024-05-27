@@ -17,15 +17,13 @@ class SGalleryDetails extends StatelessWidget {
             Expanded(
               child: Hero(
                 tag: 'logo$index',
-                child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
-                  image: DecorationImage(
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
-                  ),
+                child: Image.network(
+                  'http://192.168.1.10/senior/$imagePath',
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset('images/default.jpg');
+                  },
                 ),
-                            ),
               ),
             ),
             Container(
