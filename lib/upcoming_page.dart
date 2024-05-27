@@ -1,5 +1,5 @@
-import 'package:beauty_center/cancel_booking.dart';
 import 'package:beauty_center/scheduled_card.dart';
+import 'package:beauty_center/screens/cancel_booking.dart';
 import 'package:flutter/material.dart';
 
 class SUpcomingPage extends StatefulWidget {

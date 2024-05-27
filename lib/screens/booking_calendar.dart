@@ -1,5 +1,5 @@
-import 'package:beauty_center/button.dart';
-import 'package:beauty_center/custom_appbar.dart';
+import 'package:beauty_center/custom/appBar/custom_appbar.dart';
+import 'package:beauty_center/custom/button.dart';
 import 'package:beauty_center/success_booked.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

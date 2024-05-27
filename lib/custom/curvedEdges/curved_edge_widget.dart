@@ -1,4 +1,4 @@
-import 'package:beauty_center/curved_edge.dart';
+import 'package:beauty_center/custom/curvedEdges/curved_edge.dart';
 import 'package:flutter/material.dart';
 
 class SCurvedEdgeWidget extends StatelessWidget {

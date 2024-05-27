@@ -1,8 +1,8 @@
 // import 'dart:ffi';
-import 'package:beauty_center/booking_page.dart';
 import 'package:beauty_center/helper_functions.dart';
-import 'package:beauty_center/home.dart';
-import 'package:beauty_center/profile.dart';
+import 'package:beauty_center/screens/booking_page.dart';
+import 'package:beauty_center/screens/home.dart';
+import 'package:beauty_center/screens/profile.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';

@@ -19,7 +19,7 @@ class SSectionHeading extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "Popular Services",
+          title,
           style: Theme.of(context)
               .textTheme
               .headlineSmall!

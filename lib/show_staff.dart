@@ -1,4 +1,4 @@
-import 'package:beauty_center/staff_test.dart';
+import 'package:beauty_center/screens/staff_test.dart';
 import 'package:flutter/material.dart';
 
 class SShowStaff extends StatelessWidget {

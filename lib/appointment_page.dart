@@ -10,7 +10,8 @@ class SAppointmentPage extends StatefulWidget {
 
 class _SAppointmentPageState extends State<SAppointmentPage> {
   FilterStatus status = FilterStatus.upcoming;
-  Alignment _alignment = Alignment.centerLeft;
+
+  // Alignment _alignment = Alignment.centerLeft;
 
   List<dynamic> schedules = [
     {

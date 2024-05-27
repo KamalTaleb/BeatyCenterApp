@@ -1,5 +1,5 @@
-import 'package:beauty_center/add_feedback.dart';
 import 'package:beauty_center/scheduled_card.dart';
+import 'package:beauty_center/screens/add_feedback.dart';
 import 'package:flutter/material.dart';
 
 class SCanceledPage extends StatefulWidget {

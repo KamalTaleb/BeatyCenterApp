@@ -1,11 +1,17 @@
+import 'package:beauty_center/screens/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SCartCounterIcon extends StatelessWidget {
   const SCartCounterIcon(
-      {super.key, required this.onPressed, required this.iconColor});
+      {super.key,
+      required this.onPressed,
+      required this.iconColor,
+      required this.counterBgColor,
+      required this.counterTextColor});
 
-  final Color iconColor;
+  final Color iconColor, counterBgColor, counterTextColor;
   final VoidCallback onPressed;
 
   @override
@@ -13,7 +19,7 @@ class SCartCounterIcon extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => Get.to(() => SCartScreen()),
           icon: const Icon(
             Iconsax.shopping_bag,
             color: Colors.white,

@@ -1,4 +1,4 @@
-import 'package:beauty_center/navigation_menu.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

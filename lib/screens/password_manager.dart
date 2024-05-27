@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:beauty_center/profile.dart';
+import 'package:beauty_center/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -105,7 +105,8 @@ class _PasswordManagerState extends State<PasswordManager> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Password Manager', style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text('Password Manager',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           centerTitle: true,
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -131,7 +132,9 @@ class _PasswordManagerState extends State<PasswordManager> {
                     borderSide: BorderSide(width: 2.0),
                   ),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscureCurrentPassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_obscureCurrentPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
                         _obscureCurrentPassword = !_obscureCurrentPassword;
@@ -150,7 +153,9 @@ class _PasswordManagerState extends State<PasswordManager> {
                     borderSide: BorderSide(width: 2.0),
                   ),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscureNewPassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_obscureNewPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
                         _obscureNewPassword = !_obscureNewPassword;
@@ -169,10 +174,13 @@ class _PasswordManagerState extends State<PasswordManager> {
                     borderSide: BorderSide(width: 2.0),
                   ),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscureConfirmNewPassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_obscureConfirmNewPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
-                        _obscureConfirmNewPassword = !_obscureConfirmNewPassword;
+                        _obscureConfirmNewPassword =
+                            !_obscureConfirmNewPassword;
                       });
                     },
                   ),

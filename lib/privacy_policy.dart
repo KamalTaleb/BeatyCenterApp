@@ -1,4 +1,4 @@
-import 'package:beauty_center/profile.dart';
+import 'package:beauty_center/screens/profile.dart';
 import 'package:flutter/material.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
@@ -16,7 +16,8 @@ class PrivacyPolicyPage extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => Profile(),
               ),
-            );          },
+            );
+          },
         ),
       ),
       body: SingleChildScrollView(
