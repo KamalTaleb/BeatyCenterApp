@@ -36,7 +36,7 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> _fetchUserData(int userId) async {
-    var url = Uri.parse("http://192.168.1.12/senior/fetch_users.php");
+    var url = Uri.parse("http://192.168.1.9/senior/fetch_users.php");
     var response = await http.post(url, body: {
       "user_id": userId.toString(),
     });
@@ -108,12 +108,6 @@ class _ProfileState extends State<Profile> {
         title: const Text('Profile',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_circle_left_outlined),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
       ),
       body: userId == null
           ? const Center(child: CircularProgressIndicator())

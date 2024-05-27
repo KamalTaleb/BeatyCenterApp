@@ -1,5 +1,7 @@
 import 'package:beauty_center/custom/appBar/appbar.dart';
 import 'package:beauty_center/screens/checkout.dart';
+import 'package:beauty_center/screens/home.dart';
+import 'package:beauty_center/screens/staff_check.dart';
 import 'package:beauty_center/services_card_horizontal.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -56,7 +58,10 @@ class _SCartScreenState extends State<SCartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SAppbar(
-        onPressed: () {},
+        onPressed: () {Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const homePage()),
+        );},
         showBackArrow: true,
         title: Text(
           'Services',
@@ -111,7 +116,7 @@ class _SCartScreenState extends State<SCartScreen> {
             onPressed: () {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => const SCheckoutScreen(),
+                  builder: (context) => const SCheckStaff(),
                 ),
               );
             },

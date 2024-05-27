@@ -28,12 +28,12 @@ class _SavedImagesState extends State<SavedImages> {
     if (userId == null) return;
 
     try {
-      var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_liked_images.php?user_id=$userId'));
+      var response = await http.get(Uri.parse('http://192.168.1.9/senior/get_liked_images.php?user_id=$userId'));
       print('Response body: ${response.body}');
       if (response.statusCode == 200) {
         List<dynamic> likedImageIds = json.decode(response.body);
         var likedImagesResponse = await http.post(
-          Uri.parse('http://192.168.1.10/senior/get_gallery_images_by_ids.php'),
+          Uri.parse('http://192.168.1.9/senior/get_gallery_images_by_ids.php'),
           headers: {'Content-Type': 'application/json'},
           body: json.encode({'image_ids': likedImageIds.map((image) => image['image_id']).toList()}),
         );
@@ -127,7 +127,7 @@ class _SavedImagesState extends State<SavedImages> {
                             borderRadius: BorderRadius.circular(15),
                             image: DecorationImage(
                               image: _likedImages[index].imagePath.isNotEmpty
-                                  ? NetworkImage('http://192.168.1.10/senior/${_likedImages[index].imagePath}')
+                                  ? NetworkImage('http://192.168.1.9/senior/${_likedImages[index].imagePath}')
                                   : const AssetImage('images/default.jpg') as ImageProvider,
                               fit: BoxFit.cover,
                             ),

@@ -28,7 +28,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
   Future<void> _fetchGalleryImages() async {
     try {
       var response = await http
-          .get(Uri.parse('http://192.168.1.10/senior/get_gallery_images.php'));
+          .get(Uri.parse('http://192.168.1.9/senior/get_gallery_images.php'));
       if (kDebugMode) {
         print('Response body: ${response.body}');
       }
@@ -64,7 +64,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
 
     try {
       var response = await http.get(Uri.parse(
-          'http://192.168.1.10/senior/get_liked_images.php?user_id=$userId'));
+          'http://192.168.1.9/senior/get_liked_images.php?user_id=$userId'));
       if (kDebugMode) {
         print('Response body: ${response.body}');
       }
@@ -97,7 +97,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
     if (_likedImages.contains(imageId)) {
       // Unlike
       var response = await http.post(
-        Uri.parse('http://192.168.1.10/senior/unlike_image.php'),
+        Uri.parse('http://192.168.1.9/senior/unlike_image.php'),
         headers: headers,
         body: body,
       );
@@ -116,7 +116,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
     } else {
       // Like
       var response = await http.post(
-        Uri.parse('http://192.168.1.10/senior/like_image.php'),
+        Uri.parse('http://192.168.1.9/senior/like_image.php'),
         headers: headers,
         body: body,
       );
@@ -234,7 +234,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
                                 image: DecorationImage(
                                   image: _images[index].imagePath.isNotEmpty
                                       ? NetworkImage(
-                                          'http://192.168.1.10/senior/${_images[index].imagePath}')
+                                          'http://192.168.1.9/senior/${_images[index].imagePath}')
                                       : const AssetImage('images/default.jpg')
                                           as ImageProvider,
                                   fit: BoxFit.cover,

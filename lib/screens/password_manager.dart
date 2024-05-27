@@ -78,7 +78,7 @@ class _PasswordManagerState extends State<PasswordManager> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.10/senior/new_password.php");
+    var url = Uri.parse("http://192.168.1.9/senior/new_password.php");
     var response = await http.post(url, body: {
       "user_id": userId.toString(),
       "current_password": currentPasswordController.text,

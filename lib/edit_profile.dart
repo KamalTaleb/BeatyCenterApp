@@ -26,7 +26,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
   }
 
   Future<void> fetchUserData() async {
-    var url = Uri.parse("http://192.168.1.10/senior/fetch_users.php");
+    var url = Uri.parse("http://192.168.1.9/senior/fetch_users.php");
     var response = await http.post(url, body: {
       "user_id": widget.userId.toString(),
     });

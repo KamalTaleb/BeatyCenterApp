@@ -24,7 +24,7 @@ class _SStaffTestState extends State<SStaffTest> {
   Future<void> _fetchStaff() async {
     try {
       var response = await http
-          .get(Uri.parse('http://192.168.1.10/senior/get_all_staff.php'));
+          .get(Uri.parse('http://192.168.1.9/senior/get_all_staff.php'));
       if (response.statusCode == 200) {
         List<dynamic> staffList = json.decode(response.body);
         setState(() {
@@ -142,7 +142,7 @@ class _SStaffTestState extends State<SStaffTest> {
                               image: DecorationImage(
                                 image: _images[index].imagePath.isNotEmpty
                                     ? NetworkImage(
-                                        'http://192.168.1.10/senior/${_images[index].imagePath}')
+                                        'http://192.168.1.9/senior/${_images[index].imagePath}')
                                     : AssetImage('images/default.jpg')
                                         as ImageProvider,
                                 fit: BoxFit.cover,

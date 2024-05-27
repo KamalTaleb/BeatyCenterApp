@@ -1,9 +1,13 @@
 import 'package:beauty_center/appointment_page.dart';
+import 'package:beauty_center/map_selection.dart';
 import 'package:beauty_center/saved.dart';
 import 'package:beauty_center/screens/cart.dart';
 import 'package:beauty_center/screens/home.dart';
+import 'package:beauty_center/screens/splash.dart';
+import 'package:beauty_center/screens/staff_check.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:beauty_center/sign_up.dart';
+import 'package:beauty_center/staff_view_as_grid.dart';
 
 // import 'package:beauty_center/gallery_test.dart';
 // import 'package:beauty_center/help_center.dart';
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SCartScreen(),
+      home: Splash(),
     );
   }
 }

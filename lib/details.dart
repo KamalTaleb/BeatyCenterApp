@@ -22,7 +22,7 @@ class SGalleryDetails extends StatelessWidget {
             child: Hero(
               tag: 'logo$index',
               child: Image.network(
-                'http://192.168.1.10/senior/$imagePath',
+                'http://192.168.1.9/senior/$imagePath',
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset('images/default.jpg');
