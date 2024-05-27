@@ -13,7 +13,6 @@ class SSearchContainer extends StatelessWidget {
   final IconData? icon;
   final VoidCallback? onTap;
 
-  // final bool showbackground, showBorder;
 
   @override
   Widget build(BuildContext context) {

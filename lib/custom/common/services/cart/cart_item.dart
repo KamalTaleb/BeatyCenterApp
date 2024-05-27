@@ -1,5 +1,4 @@
 import 'package:beauty_center/service_title_text.dart';
-import 'package:beauty_center/service_title_text_with_verified_icon.dart';
 import 'package:flutter/material.dart';
 
 class SCartItem extends StatelessWidget {
@@ -16,7 +15,6 @@ class SCartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SServiceTitleWithVerifiedIcon(title: 'title'),
               const Flexible(
                 child: SServiceTitleText(
                   title: 'subtext',

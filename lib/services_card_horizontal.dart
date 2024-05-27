@@ -1,25 +1,45 @@
 import 'package:beauty_center/helper_functions.dart';
 import 'package:beauty_center/rounded_container.dart';
-import 'package:beauty_center/rounded_image.dart';
 import 'package:beauty_center/service_price_text.dart';
-import 'package:beauty_center/service_title_text.dart';
-import 'package:beauty_center/service_title_text_with_verified_icon.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:iconsax/iconsax.dart';
 
-class SServicesCardHorizontal extends StatelessWidget {
-  const SServicesCardHorizontal({super.key});
+class SServicesCardHorizontal extends StatefulWidget {
+  final int id;
+  final String name;
+  final String description;
+  final String duration;
+  final String price;
+
+  const SServicesCardHorizontal({
+    super.key,
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.duration,
+    required this.price,
+  });
+
+  @override
+  _SServicesCardHorizontalState createState() => _SServicesCardHorizontalState();
+}
+
+class _SServicesCardHorizontalState extends State<SServicesCardHorizontal> {
+  bool _isSelected = false;
+
+  void _toggleSelection() {
+    setState(() {
+      _isSelected = !_isSelected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final dark = SHelperFunction.isDarkMode(context);
+
     return GestureDetector(
       onTap: () {},
       child: Container(
-        width: 200,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),
@@ -30,96 +50,62 @@ class SServicesCardHorizontal extends StatelessWidget {
             SRoundedContainer(
               height: 120,
               padding: const EdgeInsets.all(8.0),
-              backgroundColor:
-                  dark ? const Color(0xFF272727) : const Color(0xFFF6F6F6),
-              // child: Stack(
-              //   children: [
-              //     const SizedBox(
-              //       height: 120,
-              //       width: 120,
-              //       // child: SRoundedImage(
-              //       //   imageUrl: 'images/home2.JPG',
-              //       //   applyImageRadius: true,
-              //       // ),
-              //     ),
-              //     // Positioned(
-              //     //   top: 12,
-              //     //   child: SRoundedContainer(
-              //     //     radius: 8.0,
-              //     //     backgroundColor: const Color(0xFFFFE24B).withOpacity(0.8),
-              //     //     padding: const EdgeInsets.symmetric(
-              //     //         horizontal: 8.0, vertical: 4.0),
-              //     //     child: Text(
-              //     //       '25%',
-              //     //       style: Theme.of(context)
-              //     //           .textTheme
-              //     //           .labelLarge!
-              //     //           .apply(color: Colors.black),
-              //     //     ),
-              //     //   ),
-              //     // ),
-              //   ],
-              // ),
+              backgroundColor: dark ? const Color(0xFF272727) : const Color(0xFFF6F6F6),
             ),
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SServiceTitleText(
-                          title: 'service one',
-                          smallSize: true,
-                        ),
-                      ],
+                    Text(
+                      widget.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
                     ),
                     const SizedBox(
-                      height: 8.0,
+                      height: 4.0,
                     ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SServiceTitleWithVerifiedIcon(title: 'hair'),
-                      ],
+                    Text(
+                      widget.description,
+                      style: const TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.black54,
+                      ),
                     ),
-                    // const Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     SServiceTitleText(
-                    //       title: 'service one',
-                    //       smallSize: true,
-                    //     ),
-                    //     SizedBox(
-                    //       height: 8.0,
-                    //     ),
-                    //     SServiceTitleWithVerifiedIcon(title: 'hair'),
-                    //   ],
-                    // ),
-                    const Spacer(),
+                    const SizedBox(
+                      height: 4.0,
+                    ),
+                    Text(
+                      widget.duration,
+                      style: const TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.black54,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Flexible(
-                          child: SServicePriceText(
-                            price: '256.0',
-                          ),
+                        SServicePriceText(
+                          price: widget.price,
                         ),
                         Container(
-                          decoration: const BoxDecoration(
-                            color: Colors.black54,
-                            borderRadius: BorderRadius.only(
+                          decoration: BoxDecoration(
+                            color: _isSelected ? Colors.teal : Colors.black54,
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(12.0),
                               bottomRight: Radius.circular(16.0),
                             ),
                           ),
-                          child: const SizedBox(
+                          child: SizedBox(
                             width: 32.0 * 1.2,
                             height: 32.0 * 1.2,
                             child: Center(
-                              child: Icon(
-                                FontAwesomeIcons.plus,
+                              child: IconButton(
+                                icon: const Icon(FontAwesomeIcons.plus),
+                                onPressed: _toggleSelection,
                                 color: Colors.white,
                               ),
                             ),
