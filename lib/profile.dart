@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:beauty_center/help_center.dart';
-import 'package:beauty_center/password_manager.dart';
 import 'package:beauty_center/privacy_policy.dart';
 import 'package:beauty_center/saved.dart';
+import 'package:beauty_center/screens/password_manager.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

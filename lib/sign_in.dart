@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:beauty_center/gallery_test.dart';
-import 'package:beauty_center/navigation_menu.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:beauty_center/welcome_screen.dart';
 import 'package:beauty_center/profile.dart';
