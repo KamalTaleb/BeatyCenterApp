@@ -1,11 +1,6 @@
 import 'package:beauty_center/appointment_page.dart';
-import 'package:beauty_center/map_selection.dart';
 import 'package:beauty_center/saved.dart';
-<<<<<<< HEAD
-import 'package:beauty_center/screens/checkout.dart';
-=======
 import 'package:beauty_center/screens/cart.dart';
->>>>>>> f458b44f7dfb6ad2864282a02d41e35b837e7356
 import 'package:beauty_center/screens/home.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:beauty_center/sign_up.dart';
@@ -38,11 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-<<<<<<< HEAD
-      home: MapSelectionScreen(),
-=======
       home: SCartScreen(),
->>>>>>> f458b44f7dfb6ad2864282a02d41e35b837e7356
     );
   }
 }
