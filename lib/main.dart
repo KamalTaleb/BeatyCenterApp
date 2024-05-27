@@ -1,4 +1,6 @@
+import 'package:beauty_center/screens/cart.dart';
 import 'package:beauty_center/screens/navigation_menu.dart';
+import 'package:beauty_center/services_card_horizontal.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const NavigationMenu(),
+      home: const SCartScreen(),
     );
   }
 }
