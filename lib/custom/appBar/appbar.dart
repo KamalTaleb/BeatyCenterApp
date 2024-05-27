@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,6 +9,7 @@ class SAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingIcon,
     this.leadingOnPressed,
     this.showBackArrow = true,
+    required this.onPressed,
   });
 
   final Widget? title;
@@ -17,6 +17,7 @@ class SAppbar extends StatelessWidget implements PreferredSizeWidget {
   final IconData? leadingIcon;
   final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,7 @@ class SAppbar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         leading: showBackArrow
             ? IconButton(
-                onPressed: () => Get.back(),
-                icon: const Icon(Iconsax.arrow_left))
+                onPressed: onPressed, icon: const Icon(Iconsax.arrow_left))
             : leadingIcon != null
                 ? IconButton(
                     onPressed: leadingOnPressed, icon: Icon(leadingIcon))

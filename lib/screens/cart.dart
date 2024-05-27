@@ -2,6 +2,8 @@ import 'package:beauty_center/custom/appBar/appbar.dart';
 import 'package:beauty_center/custom/common/services/cart/cart_Items.dart';
 import 'package:beauty_center/grid_layout.dart';
 import 'package:beauty_center/screens/checkout.dart';
+import 'package:beauty_center/screens/home.dart';
+import 'package:beauty_center/screens/staff_check.dart';
 import 'package:beauty_center/services_card_horizontal.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,6 +16,12 @@ class SCartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SAppbar(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const homePage()),
+          );
+        },
         showBackArrow: true,
         title: Text(
           'Services',
@@ -28,18 +36,6 @@ class SCartScreen extends StatelessWidget {
               SGridLayout(
                   itemCount: 10,
                   itemBuilder: (_, index) => const SServicesCardHorizontal())
-              // DropdownButtonFormField(
-              //   decoration: const InputDecoration(
-              //       prefixIcon: Icon(FontAwesomeIcons.sort)),
-              //   onChanged: (value) {},
-              //   items: ['Name', 'Higher Price']
-              //       .map(
-              //         (option) => DropdownMenuItem(
-              //           child: Text(option),
-              //         ),
-              //       )
-              //       .toList(),
-              // ), // SServicesCardHorizontal(),
             ],
           ),
         ),
@@ -50,7 +46,7 @@ class SCartScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const SCheckoutScreen(),
+                builder: (context) => const SCheckStaff(),
               ),
             );
           },

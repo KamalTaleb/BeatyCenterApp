@@ -6,6 +6,7 @@ import 'package:beauty_center/custom/appBar/appbar.dart';
 import 'package:beauty_center/custom/common/services/cart/cart_Items.dart';
 import 'package:beauty_center/helper_functions.dart';
 import 'package:beauty_center/rounded_container.dart';
+import 'package:beauty_center/screens/cart.dart';
 import 'package:flutter/material.dart';
 
 class SCheckoutScreen extends StatelessWidget {
@@ -16,6 +17,12 @@ class SCheckoutScreen extends StatelessWidget {
     final dark = SHelperFunction.isDarkMode(context);
     return Scaffold(
       appBar: SAppbar(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SCartScreen()),
+          );
+        },
         showBackArrow: true,
         title: Text(
           'Order Review',

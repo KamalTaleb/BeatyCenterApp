@@ -1,5 +1,7 @@
 import 'package:beauty_center/appointment_page.dart';
+import 'package:beauty_center/map_selection.dart';
 import 'package:beauty_center/saved.dart';
+import 'package:beauty_center/screens/checkout.dart';
 import 'package:beauty_center/screens/home.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:beauty_center/sign_up.dart';
@@ -27,12 +29,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Beauty Center by Sanyar',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: homePage(),
+      home: MapSelectionScreen(),
     );
   }
 }

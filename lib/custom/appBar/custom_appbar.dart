@@ -1,3 +1,4 @@
+import 'package:beauty_center/screens/staff_check.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -38,21 +39,27 @@ class _CustomAppBarState extends State<CustomAppBar> {
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.teal[700],
+                // color: Colors.teal[700],
               ),
               child: IconButton(
                 onPressed: () {
-                  //if route is given, then this icon button will navigate to that route
                   if (widget.route != null) {
-                    Navigator.of(context).pushNamed(widget.route!);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const SCheckStaff(),
+                      ),
+                    );
                   } else {
-                    //else, just simply pop back to previous page
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const SCheckStaff(),
+                      ),
+                    );
                   }
                 },
                 icon: widget.icon!,
-                iconSize: 16,
-                color: Colors.white,
+                // iconSize: 16,
+                color: Colors.black,
               ),
             )
           : null,

@@ -20,7 +20,7 @@ class SGridLayout extends StatelessWidget {
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         mainAxisExtent: mainAxisExtent,
         mainAxisSpacing: 16.0,
         crossAxisSpacing: 16.0,

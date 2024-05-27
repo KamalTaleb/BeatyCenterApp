@@ -1,5 +1,7 @@
 import 'package:beauty_center/home_services.dart';
 import 'package:beauty_center/promo_slider.dart';
+import 'package:beauty_center/screens/cart.dart';
+import 'package:beauty_center/screens/home.dart';
 import 'package:beauty_center/search_container.dart';
 import 'package:beauty_center/primary_header_container.dart';
 import 'package:beauty_center/section_heading.dart';
@@ -14,46 +16,53 @@ class homePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SPrimaryHeaderContainer(
+            SPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 32.0,
                   ),
-                  SSearchContainer(text: "search"),
-                  SizedBox(
+                  const SSearchContainer(text: "search"),
+                  const SizedBox(
                     height: 32.0,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 18.0),
+                    padding: const EdgeInsets.only(left: 18.0),
                     child: Column(
                       children: [
                         SSectionHeading(
                           title: "Popular Services",
                           showActivityButton: true,
                           textColor: Colors.white,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SCartScreen()),
+                            );
+                          },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16.0,
                         ),
-                        SHomeServices(),
+                        const SHomeServices(),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  const SPromoSlider(),
-                  const SizedBox(
+                  SPromoSlider(),
+                  SizedBox(
                     height: 32.0,
                   ),
                   SShowStaff(
@@ -61,7 +70,7 @@ class homePage extends StatelessWidget {
                     imageUrl: 'images/home1.JPG',
                     buttonText: 'Show',
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 32.0,
                   ),
                   SShowGallery(

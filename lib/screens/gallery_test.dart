@@ -1,4 +1,7 @@
+import 'package:beauty_center/screens/home.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,8 +27,11 @@ class _SGalleryTestState extends State<SGalleryTest> {
 
   Future<void> _fetchGalleryImages() async {
     try {
-      var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_gallery_images.php'));
-      print('Response body: ${response.body}');
+      var response = await http
+          .get(Uri.parse('http://192.168.1.10/senior/get_gallery_images.php'));
+      if (kDebugMode) {
+        print('Response body: ${response.body}');
+      }
       if (response.statusCode == 200) {
         List<dynamic> galleryList = json.decode(response.body);
         setState(() {
@@ -40,10 +46,14 @@ class _SGalleryTestState extends State<SGalleryTest> {
           }).toList();
         });
       } else {
-        print('Failed to load gallery');
+        if (kDebugMode) {
+          print('Failed to load gallery');
+        }
       }
     } catch (e) {
-      print('Error: $e');
+      if (kDebugMode) {
+        print('Error: $e');
+      }
     }
   }
 
@@ -53,18 +63,26 @@ class _SGalleryTestState extends State<SGalleryTest> {
     if (userId == null) return;
 
     try {
-      var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_liked_images.php?user_id=$userId'));
-      print('Response body: ${response.body}');
+      var response = await http.get(Uri.parse(
+          'http://192.168.1.10/senior/get_liked_images.php?user_id=$userId'));
+      if (kDebugMode) {
+        print('Response body: ${response.body}');
+      }
       if (response.statusCode == 200) {
         List<dynamic> likedImages = json.decode(response.body);
         setState(() {
-          _likedImages = likedImages.map((image) => int.parse(image['image_id'])).toSet();
+          _likedImages =
+              likedImages.map((image) => int.parse(image['image_id'])).toSet();
         });
       } else {
-        print('Failed to load liked images');
+        if (kDebugMode) {
+          print('Failed to load liked images');
+        }
       }
     } catch (e) {
-      print('Error: $e');
+      if (kDebugMode) {
+        print('Error: $e');
+      }
     }
   }
 
@@ -83,13 +101,17 @@ class _SGalleryTestState extends State<SGalleryTest> {
         headers: headers,
         body: body,
       );
-      print('Unlike response body: ${response.body}');
+      if (kDebugMode) {
+        print('Unlike response body: ${response.body}');
+      }
       if (response.statusCode == 200) {
         setState(() {
           _likedImages.remove(imageId);
         });
       } else {
-        print('Failed to unlike image');
+        if (kDebugMode) {
+          print('Failed to unlike image');
+        }
       }
     } else {
       // Like
@@ -98,13 +120,17 @@ class _SGalleryTestState extends State<SGalleryTest> {
         headers: headers,
         body: body,
       );
-      print('Like response body: ${response.body}');
+      if (kDebugMode) {
+        print('Like response body: ${response.body}');
+      }
       if (response.statusCode == 200) {
         setState(() {
           _likedImages.add(imageId);
         });
       } else {
-        print('Failed to like image');
+        if (kDebugMode) {
+          print('Failed to like image');
+        }
       }
     }
   }
@@ -118,19 +144,50 @@ class _SGalleryTestState extends State<SGalleryTest> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
-            const Text(
-              'Services Gallery',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
+            Row(
+              children: [
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => homePage()),
+                        );
+                      },
+                      icon: const Icon(
+                        FontAwesomeIcons.longArrowAltLeft,
+                        color: Colors.transparent,
+                      ),
+                    ),
+                  ),
+                ),
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Services Gallery',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             Expanded(
               child: Container(
@@ -176,8 +233,10 @@ class _SGalleryTestState extends State<SGalleryTest> {
                                 borderRadius: BorderRadius.circular(15),
                                 image: DecorationImage(
                                   image: _images[index].imagePath.isNotEmpty
-                                      ? NetworkImage('http://192.168.1.10/senior/${_images[index].imagePath}')
-                                      : const AssetImage('images/default.jpg') as ImageProvider,
+                                      ? NetworkImage(
+                                          'http://192.168.1.10/senior/${_images[index].imagePath}')
+                                      : const AssetImage('images/default.jpg')
+                                          as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -191,7 +250,8 @@ class _SGalleryTestState extends State<SGalleryTest> {
                                 _likedImages.contains(_images[index].imageId)
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: _likedImages.contains(_images[index].imageId)
+                                color: _likedImages
+                                        .contains(_images[index].imageId)
                                     ? Colors.red
                                     : Colors.white,
                               ),

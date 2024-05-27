@@ -1,8 +1,10 @@
 import 'package:beauty_center/custom/appBar/custom_appbar.dart';
 import 'package:beauty_center/custom/button.dart';
+import 'package:beauty_center/screens/checkout.dart';
 import 'package:beauty_center/success_booked.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SBookingCalendarPage extends StatefulWidget {
@@ -26,7 +28,7 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
     return Scaffold(
       appBar: CustomAppBar(
         appTitle: 'Appointment',
-        icon: FaIcon(Icons.arrow_back_ios),
+        icon: FaIcon(Iconsax.arrow_left),
       ),
       body: CustomScrollView(
         slivers: <Widget>[
@@ -118,10 +120,10 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
               ),
               child: SButton(
                 width: double.infinity,
-                title: 'Make Appointment',
+                title: 'Checkout',
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const SAppointmentBooked(),
+                    builder: (context) => const SCheckoutScreen(),
                   ));
                 },
                 disable: _timeSelected && _dateSelected ? false : true,

@@ -46,7 +46,7 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   table_calendar: ^3.0.8
   lottie: ^2.0.0
-  
+  google_maps_flutter: ^2.2.0
   
   http: any
   flutter_otp_text_field: ^1.1.3+2

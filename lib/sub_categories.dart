@@ -10,8 +10,9 @@ class SubCategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SAppbar(
-        title: Text(
+      appBar: SAppbar(
+        onPressed: () {},
+        title: const Text(
           'Services',
         ),
         showBackArrow: true,

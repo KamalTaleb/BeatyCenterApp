@@ -1,8 +1,9 @@
+import 'package:beauty_center/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:beauty_center/details.dart';
-
 
 class SStaffTest extends StatefulWidget {
   const SStaffTest({super.key});
@@ -22,7 +23,8 @@ class _SStaffTestState extends State<SStaffTest> {
 
   Future<void> _fetchStaff() async {
     try {
-      var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_all_staff.php'));
+      var response = await http
+          .get(Uri.parse('http://192.168.1.10/senior/get_all_staff.php'));
       if (response.statusCode == 200) {
         List<dynamic> staffList = json.decode(response.body);
         setState(() {
@@ -52,19 +54,50 @@ class _SStaffTestState extends State<SStaffTest> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
-              const Text(
-                'Staff Members',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
+              Row(
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => homePage()),
+                          );
+                        },
+                        icon: const Icon(
+                          FontAwesomeIcons.longArrowAltLeft,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Staff Members',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               Expanded(
                 child: Container(
@@ -80,7 +113,7 @@ class _SStaffTestState extends State<SStaffTest> {
                   ),
                   child: GridView.builder(
                     gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -108,8 +141,10 @@ class _SStaffTestState extends State<SStaffTest> {
                               borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
                                 image: _images[index].imagePath.isNotEmpty
-                                    ? NetworkImage('http://192.168.1.10/senior/${_images[index].imagePath}')
-                                    : AssetImage('images/default.jpg') as ImageProvider,
+                                    ? NetworkImage(
+                                        'http://192.168.1.10/senior/${_images[index].imagePath}')
+                                    : AssetImage('images/default.jpg')
+                                        as ImageProvider,
                                 fit: BoxFit.cover,
                               ),
                             ),
