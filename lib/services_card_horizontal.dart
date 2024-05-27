@@ -28,7 +28,7 @@ class SServicesCardHorizontal extends StatelessWidget {
         child: Row(
           children: [
             SRoundedContainer(
-              height: 10,
+              height: 120,
               padding: const EdgeInsets.all(8.0),
               backgroundColor:
                   dark ? const Color(0xFF272727) : const Color(0xFFF6F6F6),
