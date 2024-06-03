@@ -1,5 +1,7 @@
 import 'package:beauty_center/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -17,10 +19,8 @@ class _SplashState extends State<Splash> {
 
   _navigatetohome() async {
     await Future.delayed(const Duration(milliseconds: 2000), () {});
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const MyHomePage()));
+    Get.to(() => const MyHomePage());
+
   }
 
   @override

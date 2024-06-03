@@ -7,9 +7,13 @@ class SCartItems extends StatelessWidget {
   const SCartItems({
     super.key,
     this.showAddRemoveButtons = true,
+    required this.selectedServices,
+    required this.selectedStaffForServices,
   });
 
   final bool showAddRemoveButtons;
+  final List<Map<String, dynamic>> selectedServices;
+  final Map<int, Map<String, String>> selectedStaffForServices;
 
   @override
   Widget build(BuildContext context) {
@@ -18,33 +22,41 @@ class SCartItems extends StatelessWidget {
       separatorBuilder: (_, __) => const SizedBox(
         height: 32.0,
       ),
-      itemCount: 2,
-      itemBuilder: (_, index) => Column(
-        children: [
-          const SCartItem(),
-          if (showAddRemoveButtons)
-            const SizedBox(
-              height: 32.0,
+      itemCount: selectedServices.length,
+      itemBuilder: (_, index) {
+        final service = selectedServices[index];
+        final staff = selectedStaffForServices[service['id']];
+        return Column(
+          children: [
+            SCartItem(
+              serviceName: service['name'],
+              staffName: staff?['name'],
             ),
-          if (showAddRemoveButtons)
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 70,
-                    ),
-                    SServicesQuantityWithAddRemoveButton(),
-                  ],
-                ),
-              ],
+            if (showAddRemoveButtons)
+              const SizedBox(
+                height: 32.0,
+              ),
+            if (showAddRemoveButtons)
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 70,
+                      ),
+                      SServicesQuantityWithAddRemoveButton(),
+                    ],
+                  ),
+                ],
+              ),
+            SServicePriceText(
+              price: service['price'].toString(),
             ),
-          SServicePriceText(
-            price: '213',
-          ),
-        ],
-      ),
+          ],
+        );
+      },
     );
   }
 }
+

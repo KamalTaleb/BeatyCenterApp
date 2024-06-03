@@ -26,7 +26,7 @@ class SBillingPaymentSection extends StatelessWidget {
               width: 35,
               backgroundColor: dark ? const Color(0xFFF6F6F6) : Colors.white,
               padding: const EdgeInsets.all(8.0),
-              child: const Icon(FontAwesomeIcons.houseUser),
+              child: const Icon(FontAwesomeIcons.houseUser, color: Colors.teal,),
             ),
             const SizedBox(
               width: 8.0,

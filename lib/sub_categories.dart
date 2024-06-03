@@ -39,18 +39,6 @@ class SubCategoriesScreen extends StatelessWidget {
                   const SizedBox(
                     height: 8.0,
                   ),
-                  // SizedBox(
-                  //   height: 120,
-                  //   child: ListView.separated(
-                  //     itemCount: 4,
-                  //     scrollDirection: Axis.horizontal,
-                  //     separatorBuilder: (context, index) => const SizedBox(
-                  //       width: 12.0,
-                  //     ),
-                  //     // itemBuilder: (context, index) =>
-                  //     //     const SServicesCardHorizontal(id: null,),
-                  //   ),
-                  // ),
                 ],
               )
             ],

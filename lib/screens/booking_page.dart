@@ -28,14 +28,6 @@ class SBookingPage extends StatelessWidget {
               ),
             ),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
-              color: Colors.black,
-              iconSize: 30.0,
-            ),
-          ],
         ),
       ),
       body: SafeArea(

@@ -24,37 +24,23 @@ class SPromoSlider extends StatelessWidget {
                   controller.updatePageIndicator(index)),
           items: const [
             SRoundedImage(
-              imageUrl: 'images/home1.JPG',
+              imageUrl: 'images/teal1.jpg',
             ),
             SRoundedImage(
-              imageUrl: 'images/home2.JPG',
+              imageUrl: 'images/teal2.jpg',
             ),
             SRoundedImage(
-              imageUrl: 'images/home3.JPG',
+              imageUrl: 'images/teal3.jpg',
+            ),
+            SRoundedImage(
+              imageUrl: 'images/teal4.jpg',
+            ),
+            SRoundedImage(
+              imageUrl: 'images/teal3.jpg',
             ),
           ],
         ),
-        // const SizedBox(
-        //   height: 16.0,
-        // ),
-        // Center(
-        //   child: Obx(
-        //     () => Row(
-        //       mainAxisSize: MainAxisSize.min,
-        //       children: [
-        //         for (int i = 0; i < 3; i++)
-        //           SCircularContainer(
-        //               width: 20,
-        //               height: 4,
-        //               margin: const EdgeInsets.only(right: 10),
-        //               backgroundColor:
-        //                   controller.carouselCurrentIndex.value == i
-        //                       ? Colors.blue
-        //                       : Colors.grey),
-        //       ],
-        //     ),
-        //   ),
-        // ),
+
       ],
     );
   }

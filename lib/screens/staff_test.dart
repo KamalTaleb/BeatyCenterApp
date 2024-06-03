@@ -1,6 +1,9 @@
 import 'package:beauty_center/screens/home.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:beauty_center/details.dart';
@@ -24,7 +27,7 @@ class _SStaffTestState extends State<SStaffTest> {
   Future<void> _fetchStaff() async {
     try {
       var response = await http
-          .get(Uri.parse('http://192.168.1.9/senior/get_all_staff.php'));
+          .get(Uri.parse('http://172.20.10.5/senior/get_all_staff.php'));
       if (response.statusCode == 200) {
         List<dynamic> staffList = json.decode(response.body);
         setState(() {
@@ -63,10 +66,7 @@ class _SStaffTestState extends State<SStaffTest> {
                       alignment: Alignment.centerLeft,
                       child: IconButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => homePage()),
-                          );
+                          Get.to(() => const NavigationMenu());
                         },
                         icon: const Icon(
                           FontAwesomeIcons.longArrowAltLeft,
@@ -121,19 +121,15 @@ class _SStaffTestState extends State<SStaffTest> {
                     itemBuilder: (context, index) {
                       return RawMaterialButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SGalleryDetails(
-                                imagePath: _images[index].imagePath,
-                                title: _images[index].title,
-                                speciality: _images[index].speciality,
-                                details: _images[index].details,
-                                index: index,
-                              ),
-                            ),
-                          );
+                          Get.to(() => SGalleryDetails(
+                            imagePath: _images[index].imagePath,
+                            title: _images[index].title,
+                            speciality: _images[index].speciality,
+                            details: _images[index].details,
+                            index: index,
+                          ));
                         },
+
                         child: Hero(
                           tag: 'logo$index',
                           child: Container(
@@ -142,7 +138,7 @@ class _SStaffTestState extends State<SStaffTest> {
                               image: DecorationImage(
                                 image: _images[index].imagePath.isNotEmpty
                                     ? NetworkImage(
-                                        'http://192.168.1.9/senior/${_images[index].imagePath}')
+                                        'http://172.20.10.5/senior/${_images[index].imagePath}')
                                     : AssetImage('images/default.jpg')
                                         as ImageProvider,
                                 fit: BoxFit.cover,

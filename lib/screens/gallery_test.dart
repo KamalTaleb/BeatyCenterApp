@@ -1,12 +1,13 @@
 import 'package:beauty_center/screens/home.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:beauty_center/details.dart';
-
 class SGalleryTest extends StatefulWidget {
   const SGalleryTest({super.key});
 
@@ -28,7 +29,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
   Future<void> _fetchGalleryImages() async {
     try {
       var response = await http
-          .get(Uri.parse('http://192.168.1.9/senior/get_gallery_images.php'));
+          .get(Uri.parse('http://172.20.10.5/senior/get_gallery_images.php'));
       if (kDebugMode) {
         print('Response body: ${response.body}');
       }
@@ -64,7 +65,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
 
     try {
       var response = await http.get(Uri.parse(
-          'http://192.168.1.9/senior/get_liked_images.php?user_id=$userId'));
+          'http://172.20.10.5/senior/get_liked_images.php?user_id=$userId'));
       if (kDebugMode) {
         print('Response body: ${response.body}');
       }
@@ -97,7 +98,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
     if (_likedImages.contains(imageId)) {
       // Unlike
       var response = await http.post(
-        Uri.parse('http://192.168.1.9/senior/unlike_image.php'),
+        Uri.parse('http://172.20.10.5/senior/unlike_image.php'),
         headers: headers,
         body: body,
       );
@@ -116,7 +117,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
     } else {
       // Like
       var response = await http.post(
-        Uri.parse('http://192.168.1.9/senior/like_image.php'),
+        Uri.parse('http://172.20.10.5/senior/like_image.php'),
         headers: headers,
         body: body,
       );
@@ -153,11 +154,8 @@ class _SGalleryTestState extends State<SGalleryTest> {
                     alignment: Alignment.centerLeft,
                     child: IconButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => homePage()),
-                        );
-                      },
+                        Get.back();
+                        },
                       icon: const Icon(
                         FontAwesomeIcons.longArrowAltLeft,
                         color: Colors.transparent,
@@ -211,19 +209,15 @@ class _SGalleryTestState extends State<SGalleryTest> {
                   itemBuilder: (context, index) {
                     return RawMaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SGalleryDetails(
-                              imagePath: _images[index].imagePath,
-                              title: _images[index].title,
-                              speciality: _images[index].speciality,
-                              details: _images[index].details,
-                              index: index,
-                            ),
-                          ),
-                        );
+                        Get.to(() => SGalleryDetails(
+                          imagePath: _images[index].imagePath,
+                          title: _images[index].title,
+                          speciality: _images[index].speciality,
+                          details: _images[index].details,
+                          index: index,
+                        ));
                       },
+
                       child: Stack(
                         children: [
                           Hero(
@@ -234,7 +228,7 @@ class _SGalleryTestState extends State<SGalleryTest> {
                                 image: DecorationImage(
                                   image: _images[index].imagePath.isNotEmpty
                                       ? NetworkImage(
-                                          'http://192.168.1.9/senior/${_images[index].imagePath}')
+                                          'http://172.20.10.5/senior/${_images[index].imagePath}')
                                       : const AssetImage('images/default.jpg')
                                           as ImageProvider,
                                   fit: BoxFit.cover,

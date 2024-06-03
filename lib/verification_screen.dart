@@ -37,7 +37,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.12/senior/verify_otp.php");
+    var url = Uri.parse("http://172.20.10.5/senior/verify_otp.php");
     try {
       var response = await http.post(url, body: {
         "email": widget.email,

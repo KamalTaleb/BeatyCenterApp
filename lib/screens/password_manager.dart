@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:beauty_center/screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,7 +80,7 @@ class _PasswordManagerState extends State<PasswordManager> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.9/senior/new_password.php");
+    var url = Uri.parse("http://172.20.10.5/senior/new_password.php");
     var response = await http.post(url, body: {
       "user_id": userId.toString(),
       "current_password": currentPasswordController.text,
@@ -111,11 +113,7 @@ class _PasswordManagerState extends State<PasswordManager> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => Profile(),
-                  ),
-                );
+              Get.back();
               }),
         ),
         body: Padding(

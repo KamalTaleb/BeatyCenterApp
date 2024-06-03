@@ -11,8 +11,6 @@ class SAppointmentPage extends StatefulWidget {
 class _SAppointmentPageState extends State<SAppointmentPage> {
   FilterStatus status = FilterStatus.upcoming;
 
-  // Alignment _alignment = Alignment.centerLeft;
-
   List<dynamic> schedules = [
     {
       "staff_name": "staff 1",
@@ -76,65 +74,6 @@ class _SAppointmentPageState extends State<SAppointmentPage> {
             const SizedBox(
               height: 25,
             ),
-            // Stack(
-            //   children: [
-            //     Container(
-            //       width: double.infinity,
-            //       height: 40,
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(20.0),
-            //       ),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           for (FilterStatus filterStatus in FilterStatus.values)
-            //             Expanded(
-            //               child: GestureDetector(
-            //                 onTap: () {
-            //                   if (filterStatus == FilterStatus.upcoming) {
-            //                     status = FilterStatus.upcoming;
-            //                     _alignment = Alignment.centerLeft;
-            //                   } else if (filterStatus ==
-            //                       FilterStatus.complete) {
-            //                     status = FilterStatus.complete;
-            //                     _alignment = Alignment.center;
-            //                   } else if (filterStatus == FilterStatus.cancel) {
-            //                     status = FilterStatus.cancel;
-            //                     _alignment = Alignment.centerRight;
-            //                   }
-            //                 },
-            //                 child: Center(
-            //                   child: Text(filterStatus.name),
-            //                 ),
-            //               ),
-            //             ),
-            //         ],
-            //       ),
-            //     ),
-            //     AnimatedAlign(
-            //       alignment: _alignment,
-            //       duration: const Duration(milliseconds: 200),
-            //       child: Container(
-            //         width: 100,
-            //         height: 40,
-            //         decoration: BoxDecoration(
-            //           color: Colors.greenAccent,
-            //           borderRadius: BorderRadius.circular(20),
-            //         ),
-            //         child: Center(
-            //           child: Text(
-            //             status.name,
-            //             style: const TextStyle(
-            //               color: Colors.white,
-            //               fontWeight: FontWeight.bold,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
             Expanded(
               child: ListView.builder(
                 itemCount: filteredSchedules.length,

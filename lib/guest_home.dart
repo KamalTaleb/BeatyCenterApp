@@ -1,3 +1,4 @@
+import 'package:beauty_center/guest.dart';
 import 'package:beauty_center/home_services.dart';
 import 'package:beauty_center/promo_slider.dart';
 import 'package:beauty_center/screens/cart.dart';
@@ -13,9 +14,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-
-class homePage extends StatelessWidget {
-  const homePage({super.key});
+class GuestHome extends StatelessWidget {
+  const GuestHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,7 @@ class homePage extends StatelessWidget {
                           showActivityButton: true,
                           textColor: Colors.white,
                           onPressed: () {
-                            Get.to(() => const SCartScreen());
-
+                              Get.to(() => const guest());
                           },
                         ),
                         const SizedBox(
@@ -84,7 +83,6 @@ class homePage extends StatelessWidget {
             const SizedBox(
               height: 32.0,
             ),
-            // const NavigationController(),
           ],
         ),
       ),

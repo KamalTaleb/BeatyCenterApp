@@ -1,12 +1,15 @@
 import 'dart:convert';
-import 'package:beauty_center/complete_profile.dart';
+import 'package:beauty_center/complete_profile.dart';  // Ensure this is correctly linked
 import 'package:beauty_center/sign_in.dart';
-import 'package:beauty_center/welcome_screen.dart';
+import 'package:beauty_center/welcome_screen.dart';  // Ensure this is correctly linked
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'edit_profile.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -78,7 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.9/senior/register.php");
+    var url = Uri.parse("http://172.20.10.5/senior/register.php");
     try {
       var response = await http.post(url, body: {
         "name": name,
@@ -87,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
       });
 
       var responseData = response.body;
-      print("Response data: $responseData"); // Log the response data
+      print("Response data: $responseData");
 
       var data = json.decode(responseData);
       if (data.containsKey("status") && data["status"] == "Success") {
@@ -95,9 +98,8 @@ class _SignUpPageState extends State<SignUpPage> {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         int userId = data['user_id'];
         prefs.setInt('user_id', userId);
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => completePage(userId: userId)),
-        );
+        Get.off(() => completePage(userId: userId));  // Ensure this is correctly linked
+
       } else {
         _showSnackBar(data["error"] ?? "Signup failed. Please try again.");
       }
@@ -117,7 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -145,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: "Name",
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -157,7 +159,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: "Email",
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -176,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       onPressed: _toggleVisibility,
                     ),
                     contentPadding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -220,9 +222,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const Text("Already have an account?"),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => SignInPage()),
-                    );
+                    Get.off(() => SignInPage());
                   },
                   child: Text(
                     " Sign In",

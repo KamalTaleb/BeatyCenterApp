@@ -1,10 +1,15 @@
-import 'package:beauty_center/screens/navigation_menu.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:beauty_center/screens/navigation_menu.dart';
+import 'dart:convert';
 
 class CancelBookingPage extends StatefulWidget {
-  const CancelBookingPage({super.key});
+  final int appointmentId;
+
+  const CancelBookingPage({super.key, required this.appointmentId});
 
   @override
   _CancelBookingPageState createState() => _CancelBookingPageState();
@@ -20,12 +25,42 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
     super.dispose();
   }
 
-  void _cancelBooking() {
+  Future<void> _cancelBooking() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? userId = prefs.getInt('user_id');
+    if (userId == null) return;
+
     String reason = _selectedReason ?? 'Other: ${_otherReasonController.text}';
-    if (kDebugMode) {
-      print('Booking cancelled due to: $reason');
+
+    try {
+      var response = await http.post(
+        Uri.parse('http://172.20.10.5/senior/cancel_appointment.php'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'user_id': userId,
+          'appointment_id': widget.appointmentId,
+          'reason': reason,
+        }),
+      );
+
+      // Print the response body for debugging
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+        if (data['status'] == 'success') {
+          Get.off(() => const NavigationMenu());
+        } else {
+          print('Failed to cancel appointment: ${data['message']}');
+        }
+      } else {
+        print('Failed to cancel appointment. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +71,7 @@ class _CancelBookingPageState extends State<CancelBookingPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => const NavigationMenu(),
-              ),
-            );
+            Get.to(() => const NavigationMenu());
           },
         ),
       ),

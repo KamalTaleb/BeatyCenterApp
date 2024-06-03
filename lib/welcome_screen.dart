@@ -1,6 +1,9 @@
 import 'package:beauty_center/get_start.dart';
+import 'package:beauty_center/guest_home.dart';
 import 'package:beauty_center/sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -99,12 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const OnboardingPage(),
-                            ),
-                          );
+                          Get.to(() => const OnboardingPage());
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
@@ -130,11 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Text("Already have an account?"),
                         TextButton(
                           onPressed: () async {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const SignInPage(),
-                              ),
-                            );
+                            Get.to(() => const SignInPage());
                           },
                           child: const Text(
                             " Login",
@@ -151,11 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Text("Only here for the services?"),
                         TextButton(
                           onPressed: () async {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const SignInPage(),
-                              ),
-                            );
+                            Get.to(() => const GuestHome());
                           },
                           child: const Text(
                             "Guest Mode",

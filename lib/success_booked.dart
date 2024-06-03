@@ -1,6 +1,8 @@
 import 'package:beauty_center/custom/button.dart';
 import 'package:beauty_center/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
 class SAppointmentBooked extends StatelessWidget {
@@ -40,11 +42,7 @@ class SAppointmentBooked extends StatelessWidget {
                 width: double.infinity,
                 title: 'Back to home page',
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
-                    ),
-                  );
+                  Get.to(() => const MyHomePage());
                 },
                 disable: false,
               ),

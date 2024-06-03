@@ -22,14 +22,14 @@ class SBillingAddressSection extends StatelessWidget {
           children: [
             const Icon(
               Icons.location_history,
-              color: Colors.grey,
+              color: Colors.teal,
               size: 16,
             ),
             const SizedBox(
               width: 8.0,
             ),
             Text(
-              'Tripoli, Al Beddaoui, at the Venue',
+              'Tripoli, at the Venue',
               style: Theme.of(context).textTheme.bodyMedium,
               softWrap: true,
             ),

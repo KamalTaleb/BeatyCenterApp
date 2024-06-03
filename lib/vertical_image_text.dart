@@ -30,12 +30,13 @@ class SVerticalImageText extends StatelessWidget {
               height: 56,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: backgroundColor ?? Colors.grey[200],
+                color: backgroundColor ?? Colors.white,
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
                 child: Icon(
                   icon,
+                  color: Colors.teal[900],
                 ),
               ),
             ),

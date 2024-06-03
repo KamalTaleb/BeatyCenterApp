@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Admin extends StatefulWidget {
   Admin({Key? key}) : super(key: key);
@@ -61,7 +64,7 @@ class _AdminState extends State<Admin> {
       return;
     }
 
-    var request = http.MultipartRequest('POST', Uri.parse('http://192.168.1.10/senior/add_staff.php'));
+    var request = http.MultipartRequest('POST', Uri.parse('http://192.168.1.12/senior/add_staff.php'));
     request.fields['name'] = _nameController.text;
     request.fields['email'] = _emailController.text;
     request.fields['password'] = _passwordController.text;
@@ -89,7 +92,7 @@ class _AdminState extends State<Admin> {
   }
 
   Future<void> _deleteStaff(int id) async {
-    var response = await http.get(Uri.parse('http://192.168.1.10/senior/delete_staff.php?id=$id'));
+    var response = await http.get(Uri.parse('http://192.168.1.12/senior/delete_staff.php?id=$id'));
     if (response.statusCode == 200) {
       _showSnackBar('Staff deleted successfully');
     } else {
@@ -98,7 +101,7 @@ class _AdminState extends State<Admin> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchStaff() async {
-    var response = await http.get(Uri.parse('http://192.168.1.10/senior/get_all_staff.php'));
+    var response = await http.get(Uri.parse('http://192.168.1.12/senior/get_all_staff.php'));
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> staff = List<Map<String, dynamic>>.from(json.decode(response.body));
       print("Fetched staff: $staff"); // Debugging message
@@ -119,7 +122,7 @@ class _AdminState extends State<Admin> {
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                   _showAddStaffForm();
                 },
                 child: Text('Add Staff', style: TextStyle(color: Colors.black)),
@@ -127,7 +130,7 @@ class _AdminState extends State<Admin> {
               SizedBox(height: 5),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                   _showDeleteStaffList();
                 },
                 child: Text('Delete Staff', style: TextStyle(color: Colors.black)),
@@ -145,41 +148,43 @@ class _AdminState extends State<Admin> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Add Staff'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
-              ),
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-              ),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
-                obscureText: true,
-              ),
-              TextField(
-                controller: _specialtyController,
-                decoration: InputDecoration(labelText: 'Specialty'),
-              ),
-              TextField(
-                controller: _noteController,
-                decoration: InputDecoration(labelText: 'Note'),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _pickImage,
-                child: Text('Pick Image', style: TextStyle(color: Colors.black)),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _addStaff,
-                child: Text('Add Staff', style: TextStyle(color: Colors.black)),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextField(
+                  controller: _nameController,
+                  decoration: InputDecoration(labelText: 'Name'),
+                ),
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                ),
+                TextField(
+                  controller: _specialtyController,
+                  decoration: InputDecoration(labelText: 'Specialty'),
+                ),
+                TextField(
+                  controller: _noteController,
+                  decoration: InputDecoration(labelText: 'Note'),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _pickImage,
+                  child: Text('Pick Image', style: TextStyle(color: Colors.black)),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _addStaff,
+                  child: Text('Add Staff', style: TextStyle(color: Colors.black)),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -215,7 +220,7 @@ class _AdminState extends State<Admin> {
                           onPressed: () {
                             int id = int.tryParse(staff['id'].toString()) ?? 0;
                             _deleteStaff(id);
-                            Navigator.of(context).pop();
+                            Get.back();
                           },
                         ),
                       );
@@ -230,8 +235,6 @@ class _AdminState extends State<Admin> {
     );
   }
 
-
-
   Future<void> _uploadGalleryImage() async {
     if (_image != null &&
         _galleryTitleController.text.isNotEmpty &&
@@ -239,7 +242,7 @@ class _AdminState extends State<Admin> {
         _galleryDetailsController.text.isNotEmpty) {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://192.168.1.10/senior/add_gallery_image.php'),
+        Uri.parse('http://172.20.10.5/senior/add_gallery_image.php'),
       );
       request.fields['title'] = _galleryTitleController.text;
       request.fields['speciality'] = _gallerySpecialityController.text;
@@ -275,9 +278,6 @@ class _AdminState extends State<Admin> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                _image == null
-                    ? Text('No image selected.')
-                    : Text('Image is selected.'),
                 TextField(
                   controller: _galleryTitleController,
                   decoration: InputDecoration(labelText: 'Title'),
@@ -316,117 +316,148 @@ class _AdminState extends State<Admin> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
-              height: 40,
+            const SizedBox(
+              height: 20,
             ),
-            Text(
-              'Admin Panel',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 30,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+            Row(
+
+              children: [
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        FontAwesomeIcons.longArrowAltLeft,
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: _showStaffOptionsDialog,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal[400],
-                            fixedSize: Size(180, 180),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Text(
-                            'Edit Staff',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal[600],
-                            fixedSize: Size(180, 180),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Text(
-                            'Edit Services',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ],
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Admin Panel',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: _showGalleryUploadDialog,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal[800],
-                            fixedSize: Size(180, 180),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Text(
-                            'Edit Gallery',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal[900],
-                            fixedSize: Size(180, 180),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Text(
-                            'Edit Offers',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ],
+                  ),
+                ),
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 30,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
-                  ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: _showStaffOptionsDialog,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal[400],
+                              fixedSize: Size(180, 180),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text(
+                              'Edit Staff',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal[600],
+                              fixedSize: Size(180, 180),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text(
+                              'Edit Services',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: _showGalleryUploadDialog,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal[800],
+                              fixedSize: Size(180, 180),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text(
+                              'Edit Gallery',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal[900],
+                              fixedSize: Size(180, 180),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text(
+                              'Edit Offers',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

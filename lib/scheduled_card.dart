@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 class ScheduleCard extends StatelessWidget {
-  const ScheduleCard(
-      {super.key,
-      this.date = "11/18/2024",
-      this.day = "Monday",
-      this.time = "2:00 PM"});
+  const ScheduleCard({
+    super.key,
+    required this.date,
+    required this.day,
+    required this.time,
+  });
 
   final String date;
   final String day;
@@ -50,12 +50,13 @@ class ScheduleCard extends StatelessWidget {
             width: 5,
           ),
           Flexible(
-              child: Text(
-            time,
-            style: const TextStyle(
-              color: Colors.teal,
+            child: Text(
+              time,
+              style: const TextStyle(
+                color: Colors.teal,
+              ),
             ),
-          ))
+          ),
         ],
       ),
     );

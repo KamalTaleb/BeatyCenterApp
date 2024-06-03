@@ -1,14 +1,26 @@
 import 'package:beauty_center/custom/appBar/custom_appbar.dart';
 import 'package:beauty_center/custom/button.dart';
 import 'package:beauty_center/screens/checkout.dart';
-import 'package:beauty_center/success_booked.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SBookingCalendarPage extends StatefulWidget {
-  const SBookingCalendarPage({super.key});
+  final List<Map<String, dynamic>> selectedServices;
+  final Map<int, Map<String, String>> selectedStaffForServices;
+  final int? userId;
+
+  const SBookingCalendarPage({
+    super.key,
+    required this.selectedServices,
+    required this.selectedStaffForServices,
+    required this.userId,
+  });
 
   @override
   State<SBookingCalendarPage> createState() => _SBookingCalendarPageState();
@@ -22,6 +34,45 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
   bool _isWeekend = false;
   bool _dateSelected = false;
   bool _timeSelected = false;
+  Map<DateTime, Set<int>> _bookedTimes = {};
+  DateTime? _selectedDate;
+  String? _selectedTime;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> _fetchBookedTimes(int staffId, DateTime date) async {
+    var url = Uri.parse('http://172.20.10.5/senior/get_booked_times.php');
+    try {
+      var response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'staff_id': staffId,
+          'date': date.toIso8601String().split('T')[0],
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        List<dynamic> times = json.decode(response.body);
+        setState(() {
+          _bookedTimes[date] = times.map((time) => int.parse(time.split(':')[0]) - 9).toSet();
+        });
+      } else {
+        print('Failed to fetch booked times: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      print('Error fetching booked times: $e');
+    }
+  }
+
+  String _formatTime(int hour) {
+    final h = hour > 12 ? hour - 12 : hour;
+    final period = hour >= 12 ? 'PM' : 'AM';
+    return '${h.toString().padLeft(2, '0')}:00 $period';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,65 +104,77 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
           ),
           _isWeekend
               ? SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 30,
+              ),
+              alignment: Alignment.center,
+              child: const Text(
+                'Unfortunately, we are not available on weekends, please choose another day',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          )
+              : SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                bool isBooked = _bookedTimes[_currentDay]?.contains(index) ?? false;
+                return InkWell(
+                  splashColor: Colors.transparent,
+                  onTap: isBooked
+                      ? null
+                      : () {
+                    setState(() {
+                      _currentIndex = index;
+                      _timeSelected = true;
+                      _selectedDate = _currentDay;
+                      _selectedTime = _formatTime(index + 9);
+                    });
+                  },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 30,
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: isBooked
+                            ? Colors.grey
+                            : _currentIndex == index
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: isBooked
+                          ? Colors.grey
+                          : _currentIndex == index
+                          ? Colors.teal[700]
+                          : null,
                     ),
                     alignment: Alignment.center,
-                    child: const Text(
-                      'Unfortunately, we are not available on weekends, please choose another day',
+                    child: Text(
+                      '${index + 9}:00 ${index + 9 >= 12 ? "PM" : "AM"}',
                       style: TextStyle(
-                        fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey,
+                        color: isBooked
+                            ? Colors.white
+                            : _currentIndex == index
+                            ? Colors.white
+                            : null,
                       ),
                     ),
                   ),
-                )
-              : SliverGrid(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      return InkWell(
-                        splashColor: Colors.transparent,
-                        onTap: () {
-                          setState(() {
-                            _currentIndex = index;
-                            _timeSelected = true;
-                          });
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: _currentIndex == index
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                            color: _currentIndex == index
-                                ? Colors.teal[700]
-                                : null,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '${index + 9}:00 ${index + 9 > 11 ? "PM" : "AM"}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  _currentIndex == index ? Colors.white : null,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    childCount: 8,
-                  ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    childAspectRatio: 1.5,
-                  ),
-                ),
+                );
+              },
+              childCount: 8,
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              childAspectRatio: 1.5,
+            ),
+          ),
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(
@@ -121,9 +184,22 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
               child: SButton(
                 width: double.infinity,
                 title: 'Checkout',
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const SCheckoutScreen(),
+                onPressed: () async {
+                  await _saveAppointmentSelection();
+                  if (_currentIndex != null) {
+                    setState(() {
+                      _bookedTimes[_currentDay] ??= {};
+                      _bookedTimes[_currentDay]!.add(_currentIndex!);
+                      _timeSelected = false;
+                      _dateSelected = false;
+                      _currentIndex = null;
+                    });
+                  }
+                  Get.to(() => SCheckoutScreen(
+                    selectedServices: widget.selectedServices,
+                    selectedStaffForServices: widget.selectedStaffForServices,
+                    selectedDate: _selectedDate!,
+                    selectedTime: _selectedTime!,
                   ));
                 },
                 disable: _timeSelected && _dateSelected ? false : true,
@@ -157,20 +233,64 @@ class _SBookingCalendarPageState extends State<SBookingCalendarPage> {
           _format = format;
         });
       },
-      onDaySelected: ((selectedDay, focusDay) {
+      onDaySelected: (selectedDay, focusDay) async {
         setState(() {
           _currentDay = selectedDay;
           _focusDay = focusDay;
           _dateSelected = true;
-          if (selectedDay.weekday == 6 || selectedDay.weekday == 7) {
-            _isWeekend = true;
-            _timeSelected = false;
-            _currentIndex = null;
-          } else {
-            _isWeekend = false;
-          }
+          _currentIndex = null;
+          _timeSelected = false;
+          _isWeekend = selectedDay.weekday == 6 || selectedDay.weekday == 7;
         });
-      }),
+
+        if (!_isWeekend) {
+          for (var service in widget.selectedServices) {
+            final staffDetails = widget.selectedStaffForServices[service['id']];
+            if (staffDetails != null) {
+              await _fetchBookedTimes(int.parse(staffDetails['id']!), selectedDay);
+            }
+          }
+        }
+      },
     );
+  }
+
+  Future<void> _saveAppointmentSelection() async {
+    if (widget.userId == null || _selectedDate == null || _selectedTime == null) {
+      print('Required data is not available');
+      return;
+    }
+
+    var url = Uri.parse('http://172.20.10.5/senior/save_appointment.php');
+    try {
+      for (var service in widget.selectedServices) {
+        final staffDetails = widget.selectedStaffForServices[service['id']];
+        if (staffDetails != null) {
+          var response = await http.post(
+            url,
+            headers: {'Content-Type': 'application/json'},
+            body: json.encode({
+              'user_id': widget.userId,
+              'service_id': service['id'],
+              'staff_id': staffDetails['id'],
+              'date': _selectedDate!.toIso8601String().split('T')[0],
+              'time': _selectedTime,
+            }),
+          );
+
+          print('Sending appointment data to the server');
+          if (response.statusCode == 200) {
+            print('Appointment saved successfully');
+            print('Response: ${response.body}');
+          } else {
+            print('Failed to save appointment: ${response.statusCode} - ${response.body}');
+          }
+        } else {
+          print('No staff selected for service ID: ${service['id']}');
+        }
+      }
+    } catch (e) {
+      print('Error saving appointment: $e');
+    }
   }
 }

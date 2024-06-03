@@ -3,6 +3,8 @@ import 'package:beauty_center/screens/home.dart';
 import 'package:beauty_center/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
@@ -36,7 +38,7 @@ class _completePageState extends State<completePage> {
       return;
     }
 
-    var url = Uri.parse("http://192.168.1.9/senior/complete_profile.php");
+    var url = Uri.parse("http://172.20.10.5/senior/complete_profile.php");
     var request = http.MultipartRequest("POST", url);
     request.fields['user_id'] = widget.userId.toString();
     request.fields['phone'] = phoneNumberController.text;
@@ -55,10 +57,7 @@ class _completePageState extends State<completePage> {
 
       if (response.statusCode == 200 && data.containsKey("success")) {
         _showSnackBar(data["success"]);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const homePage()),
-        );
+        Get.to(()=> const homePage());
       } else {
         _showSnackBar(data["error"] ?? "Unknown error occurred.");
       }
@@ -78,11 +77,7 @@ class _completePageState extends State<completePage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () async {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => const SignUpPage(),
-              ),
-            );
+            Get.to(() => const SignUpPage());
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -297,7 +292,7 @@ class _completePageState extends State<completePage> {
     setState(() {
       selectedImage = File(returnImage.path);
       _image = File(returnImage.path).readAsBytesSync();
-      Navigator.of(context).pop();
+      Get.back();
     });
   }
 
@@ -308,7 +303,7 @@ class _completePageState extends State<completePage> {
     setState(() {
       selectedImage = File(returnImage.path);
       _image = File(returnImage.path).readAsBytesSync();
-      Navigator.of(context).pop();
+      Get.back();
     });
   }
 }

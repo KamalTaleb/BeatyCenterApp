@@ -1,19 +1,21 @@
 import 'dart:convert';
 import 'package:beauty_center/screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:typed_data'; // Import for Uint8List
 
-class CompleteProfile extends StatefulWidget {
+class editProfile extends StatefulWidget {
   final int userId;
 
-  const CompleteProfile({super.key, required this.userId});
+  const editProfile({super.key, required this.userId});
 
   @override
-  _CompleteProfileState createState() => _CompleteProfileState();
+  _editProfileState createState() => _editProfileState();
 }
 
-class _CompleteProfileState extends State<CompleteProfile> {
+class _editProfileState extends State<editProfile> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   String? gender;
@@ -26,7 +28,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
   }
 
   Future<void> fetchUserData() async {
-    var url = Uri.parse("http://192.168.1.9/senior/fetch_users.php");
+    var url = Uri.parse("http://172.20.10.5/senior/fetch_users.php");
     var response = await http.post(url, body: {
       "user_id": widget.userId.toString(),
     });
@@ -63,11 +65,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => Profile(),
-              ),
-            );
+            Get.to(() => const Profile());
           },
         ),
       ),

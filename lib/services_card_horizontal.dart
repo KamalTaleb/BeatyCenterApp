@@ -8,16 +8,16 @@ class SServicesCardHorizontal extends StatefulWidget {
   final int id;
   final String name;
   final String description;
-  final String duration;
   final String price;
+  final ValueChanged<bool> onSelectionChanged;
 
   const SServicesCardHorizontal({
     super.key,
     required this.id,
     required this.name,
     required this.description,
-    required this.duration,
     required this.price,
+    required this.onSelectionChanged,
   });
 
   @override
@@ -30,6 +30,7 @@ class _SServicesCardHorizontalState extends State<SServicesCardHorizontal> {
   void _toggleSelection() {
     setState(() {
       _isSelected = !_isSelected;
+      widget.onSelectionChanged(_isSelected);
     });
   }
 
@@ -70,16 +71,6 @@ class _SServicesCardHorizontalState extends State<SServicesCardHorizontal> {
                     ),
                     Text(
                       widget.description,
-                      style: const TextStyle(
-                        fontSize: 12.0,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 4.0,
-                    ),
-                    Text(
-                      widget.duration,
                       style: const TextStyle(
                         fontSize: 12.0,
                         color: Colors.black54,

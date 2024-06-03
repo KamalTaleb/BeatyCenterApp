@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 class SShowGallery extends StatelessWidget {
   const SShowGallery({
     super.key,
-    required this.imageUrl,
+    required this.imageUrls,
     required this.buttonText,
     required this.title,
   });
 
-  final String imageUrl, buttonText, title;
+  final List<String> imageUrls;
+  final String buttonText, title;
 
   @override
   Widget build(BuildContext context) {
@@ -55,38 +56,17 @@ class SShowGallery extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
+                      children: List.generate(imageUrls.length, (index) {
+                        return Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Image.asset(
-                              imageUrl,
+                              imageUrls[index],
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Image.asset(
-                              imageUrl,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: Image.asset(
-                              imageUrl,
-                            ),
-                          ),
-                        ),
-                      ],
+                        );
+                      }),
                     ),
                     const SizedBox(
                       height: 15,
@@ -96,18 +76,18 @@ class SShowGallery extends StatelessWidget {
                       children: [
                         Expanded(
                             child: OutlinedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const SGalleryTest(),
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const SGalleryTest(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                buttonText,
+                                style: const TextStyle(color: Colors.teal),
                               ),
-                            );
-                          },
-                          child: Text(
-                            buttonText,
-                            style: const TextStyle(color: Colors.teal),
-                          ),
-                        ))
+                            ))
                       ],
                     )
                   ],

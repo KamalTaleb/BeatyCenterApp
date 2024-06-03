@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'package:beauty_center/screens/navigation_menu.dart';
 import 'package:beauty_center/sign_up.dart';
+import 'package:beauty_center/staff.dart';
 import 'package:beauty_center/welcome_screen.dart';
-import 'package:beauty_center/profile.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'admin.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -41,34 +43,36 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    if (!EmailValidator.validate(email.text)) {
-      _showSnackBar("Please enter a valid email address.");
-      return;
-    }
-
-    var url = Uri.parse("http://192.168.1.9/senior/login.php");
+    var url = Uri.parse("http://172.20.10.5/senior/login.php");
     var response = await http.post(url, body: {
       "email": email.text,
       "password": password.text,
     });
 
-    var data = json.decode(response.body);
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
 
-    if (data.containsKey("status") && data["status"] == "Success") {
-      int userId = int.parse(data["user_id"]);
-      String role = data["role"];
+      if (data["status"] == "Success") {
+        int userId = int.tryParse(data["user_id"] ?? '0') ?? 0;
+        String role = data["role"] ?? '';
+        String staffName = data["name"] ?? '';
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setInt('user_id', userId);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('user_id', userId);
+        await prefs.setString('staff_name', staffName);
 
-      _showSnackBar("Login successful as $role");
-
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (builder) {
-        return const NavigationMenu();
-      }));
+        if (role == 'admin') {
+          Get.to(() => Admin()); // Replace AdminPage with your actual admin page class
+        } else if (role == 'staff') {
+          Get.to(() => StaffSchedulePage()); // Replace StaffPage with your actual staff page class
+        } else {
+          Get.to(() => const NavigationMenu());
+        }
+      } else {
+        _showSnackBar("Invalid email or password");
+      }
     } else {
-      _showSnackBar("Invalid email or password");
+      _showSnackBar("Failed to connect to server");
     }
   }
 
@@ -82,11 +86,7 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => const MyHomePage(),
-              ),
-            );
+            Get.to(() => const MyHomePage());
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -206,11 +206,7 @@ class _SignInPageState extends State<SignInPage> {
                       const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () async {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpPage(),
-                            ),
-                          );
+                          Get.to(() => const SignUpPage());
                         },
                         child: Text(
                           " Sign Up",
